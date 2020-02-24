@@ -215,6 +215,46 @@
   display: table;
 }
 
+.bg-characteristics-list {
+  margin: 50px 0 0 0;
+  color: white;
+}
+
+.bg-characteristics-list-item {
+  color: white;
+  padding: 0 20px 20px 20px;
+  font-weight: bold;
+}
+
+.bg-characteristics-list-item-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 0 auto;
+  font-size: 56px;
+  transform: translate(0, -50%);
+  text-align: center;
+}
+
+.bg-characteristics-list-item-title {
+  text-align: center;
+}
+
+.bg-characteristics-list-item-desc {
+  text-align: center;
+  margin: 20px 0 0 0;
+  font-weight: normal;
+}
+
+.bg-contacts-list-item {
+  margin: 25px;
+}
+
+.bg-contacts-list-item-icon {
+  display: table;
+  margin: 0 auto 0 auto;
+  text-align: center;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

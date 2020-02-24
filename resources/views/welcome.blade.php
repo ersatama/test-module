@@ -140,54 +140,96 @@
             <h1 class="bg-characteristics-title">НАШИ ХАРАКТЕРИСТИКИ</h1>
             <div class="bg-characteristics-desc">Узнайте о ключевых преимуществах сотрудничества с нами</div>
             <div class="bg-characteristics-list">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="bg-characteristics-list-item">
-                            <div class="bg-characteristics-list-item-icon"></div>
-                            <div class="bg-characteristics-list-item-title">КОМАНДА ПРОФЕССИОНАЛОВ</div>
-                            <div class="bg-characteristics-list-item-desc"> Заряженная на результат команда работает над улучшением вашего опыта.</div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="bg-characteristics-list-item">
+                                <div class="bg-characteristics-list-item-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="bg-characteristics-list-item-title">КОМАНДА ПРОФЕССИОНАЛОВ</div>
+                                <div class="bg-characteristics-list-item-desc"> Заряженная на результат команда работает над улучшением вашего опыта.</div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="bg-characteristics-list-item">
+                                <div class="bg-characteristics-list-item-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <div class="bg-characteristics-list-item-title">ТЕХНОЛОГИИ</div>
+                                <div class="bg-characteristics-list-item-desc">Мы технологичная логистическая компания и не боимся сложных проектов.</div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="bg-characteristics-list-item">
+                                <div class="bg-characteristics-list-item-icon">
+                                    <i class="far fa-smile"></i>
+                                </div>
+                                <div class="bg-characteristics-list-item-title">КОНКУРЕНТНЫЕ ЦЕНЫ</div>
+                                <div class="bg-characteristics-list-item-desc">Уникальные тарифы. Скидки на определённые направления.</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div class="bg-characteristics-list-item">
-                            <div class="bg-characteristics-list-item-icon"></div>
-                            <div class="bg-characteristics-list-item-title">ТЕХНОЛОГИИ</div>
-                            <div class="bg-characteristics-list-item-desc">Мы технологичная логистическая компания и не боимся сложных проектов.</div>
+                    <div class="row mt-5">
+                        <div class="col-4">
+                            <div class="bg-characteristics-list-item">
+                                <div class="bg-characteristics-list-item-icon">
+                                    <i class="far fa-calendar-alt"></i>
+                                </div>
+                                <div class="bg-characteristics-list-item-title">ЛИЧНЫЙ КАБИНЕТ</div>
+                                <div class="bg-characteristics-list-item-desc">Управляйте продукцией из личного кабинета. Оставляйте заявку на перевозку и управляйте своим складом онлайн.</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="bg-characteristics-list-item">
-                            <div class="bg-characteristics-list-item-icon"></div>
-                            <div class="bg-characteristics-list-item-title">КОНКУРЕНТНЫЕ ЦЕНЫ</div>
-                            <div class="bg-characteristics-list-item-desc">Уникальные тарифы. Скидки на определённые направления.</div>
+                        <div class="col-4">
+                            <div class="bg-characteristics-list-item">
+                                <div class="bg-characteristics-list-item-icon">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                                <div class="bg-characteristics-list-item-title">ГАРАНТИЯ</div>
+                                <div class="bg-characteristics-list-item-desc">Наши партнёры выбирают нас за надёжность и качество.</div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <div class="bg-characteristics-list-item">
-                            <div class="bg-characteristics-list-item-icon"></div>
-                            <div class="bg-characteristics-list-item-title">КОНКУРЕНТНЫЕ ЦЕНЫ</div>
-                            <div class="bg-characteristics-list-item-desc">Уникальные тарифы. Скидки на определённые направления.</div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="bg-characteristics-list-item">
-                            <div class="bg-characteristics-list-item-icon"></div>
-                            <div class="bg-characteristics-list-item-title">КОНКУРЕНТНЫЕ ЦЕНЫ</div>
-                            <div class="bg-characteristics-list-item-desc">Уникальные тарифы. Скидки на определённые направления.</div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="bg-characteristics-list-item">
-                            <div class="bg-characteristics-list-item-icon"></div>
-                            <div class="bg-characteristics-list-item-title">КОНКУРЕНТНЫЕ ЦЕНЫ</div>
-                            <div class="bg-characteristics-list-item-desc">Уникальные тарифы. Скидки на определённые направления.</div>
+                        <div class="col-4">
+                            <div class="bg-characteristics-list-item">
+                                <div class="bg-characteristics-list-item-icon">
+                                    <i class="fas fa-map-marked-alt"></i>
+                                </div>
+                                <div class="bg-characteristics-list-item-title">ДОСТАВЛЯЕМ ВЕЗДЕ</div>
+                                <div class="bg-characteristics-list-item-desc">Обеспечиваем обработку и оформление груза в стране отправления, забор и доставку груза до получателя в стране назначения.</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="bg-contacts">
+        <div class="container">
+            <h1 class="bg-deliver-title">КОНТАКТЫ</h1>
+            <div class="bg-deliver-desc">Позвольте помочь вам</div>
 
+            <div class="bg-contacts-list">
+                <div class="row mt-5">
+                    <div class="col-6">
+                        <div class="bg-contacts-list-item">
+                            <div class="bg-contacts-list-item-icon">
+                                <i class="far fa-envelope-open"></i>
+                            </div>
+                            <div class="bg-contacts-list-item-title">EMAIL</div>
+                            <div class="bg-contacts-list-item-desc">info@spark-logistics.com</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="bg-contacts-list-item">
+                            <div class="bg-contacts-list-item-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="bg-contacts-list-item-title">КОНТАКТЫ</div>
+                            <div class="bg-contacts-list-item-desc">info@spark-logistics.com</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
