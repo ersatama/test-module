@@ -1,0 +1,41 @@
+.menu {
+    border-bottom: solid 1px transparent!important;
+    &-footer {
+        background-color: #1a1a1a !important;
+        color: white;
+    }
+    &-ul {
+        justify-content: space-between;
+        & > li {
+            & > a {
+                text-transform: uppercase;
+                font-size: 12px;
+                font-weight: bold;
+                &:hover {
+                    color: #72c02c !important;
+                }
+            }
+        }
+    }
+}
+.nav-menu-item {
+    display: grid;
+    grid-template-columns: 18px auto;
+    grid-gap: 9px;
+    font-size: .92857rem;
+    &-icon {
+        justify-self: center;
+        align-self: center;
+        height: 18px;
+        width: 18px;
+    }
+    &-content {
+        justify-self: center;
+        align-self: center;
+        &-link {
+            font-size: 13px;
+            font-weight: bold;
+            color: black;
+        }
+    }
+}
