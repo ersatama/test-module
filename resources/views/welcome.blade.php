@@ -209,7 +209,7 @@
             <div class="bg-deliver-desc">Позвольте помочь вам</div>
 
             <div class="bg-contacts-list">
-                <div class="row mt-5">
+                <div class="row">
                     <div class="col-6">
                         <div class="bg-contacts-list-item">
                             <div class="bg-contacts-list-item-icon">

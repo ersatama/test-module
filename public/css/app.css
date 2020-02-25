@@ -217,6 +217,7 @@
 
 .bg-characteristics-list {
   margin: 50px 0 0 0;
+  padding: 0 0 50px 0;
   color: white;
 }
 
@@ -253,6 +254,32 @@
   display: table;
   margin: 0 auto 0 auto;
   text-align: center;
+  font-size: 50px;
+}
+
+.bg-contacts-list-item-title {
+  text-align: center;
+  font-size: 20px;
+  color: grey;
+}
+
+.bg-contacts-list-item-desc {
+  font-size: 24px;
+  text-align: center;
+}
+
+.footer {
+  background: rgba(0, 0, 0, 0.8) !important;
+  color: white;
+}
+
+.footer-social {
+  font-size: 24px;
+}
+
+.services-description {
+  color: grey;
+  font-size: 12px;
 }
 
 /*!
