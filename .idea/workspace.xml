@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93f514e2-3dbb-41e9-afb0-b5d8f8cad35a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/services/cargo/cargo.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/contacts/contacts.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/services/avia/avia.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/services/phone/phone.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/services/project/project.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/services/storage/storage.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/body/_body.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/body/_body.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/services/cargo/cargo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/services/cargo/cargo.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,6 +23,20 @@
     <execution>
       <executable />
     </execution>
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -123,7 +140,9 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1Y1ObjbjOq8TmQKnN2bA4zsWYfv" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -160,7 +179,7 @@
       <updated>1582106707268</updated>
       <workItem from="1582106710869" duration="117000" />
       <workItem from="1582168583899" duration="41813000" />
-      <workItem from="1582531332180" duration="23857000" />
+      <workItem from="1582531332180" duration="39097000" />
     </task>
     <servers />
   </component>
@@ -188,10 +207,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="512" y="454" key="NewPhpClassDialog/0.0.1536.824@0.0.1536.824" timestamp="1582606386946" />
-    <state x="862" y="507" key="NewPhpFileDialog" timestamp="1582606395397">
+    <state x="862" y="507" key="NewPhpFileDialog" timestamp="1582704856474">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="862" y="507" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1582606395397" />
+    <state x="862" y="507" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1582704856474" />
     <state x="145" y="116" key="SettingsEditor" timestamp="1582106971990">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

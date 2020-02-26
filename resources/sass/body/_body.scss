@@ -1,6 +1,9 @@
 * {
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
+body {
+    background: white !important;
+}
 .bg-container {
     background: url(/img/img-1.jpg) no-repeat top center;
     &-shadow {
@@ -203,3 +206,45 @@
     color: grey;
     font-size: 12px;
 }
+.services-content-main {
+    background-color: #333!important;
+    color: white;
+    &-item {
+        padding: 25px;
+        border-top: 1px solid black;
+        display: grid;
+        grid-gap: 20px;
+        &-title {
+            font-weight: bold;
+        }
+        &-body {
+        }
+    }
+}
+.spark-logo {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+.cargo-phone {
+    text-align: center;
+    &-icon {
+        font-size: 50px;
+    }
+    &-title {
+        text-transform: uppercase;
+        color: grey;
+    }
+    &-number {
+        text-transform: uppercase;
+        color: black;
+        font-weight: bold;
+    }
+}
+
+.contacts-item {
+    &-screen {
+
+    }
+}
+
