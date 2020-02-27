@@ -63,8 +63,18 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-item ml-4 mr-4">
-                    social network
+                <li class="nav-item ml-4 mr-4 pull-right">
+                    <div class="social-network">
+                        <div class="social-network-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                        <div class="social-network-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="social-network-icon">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>

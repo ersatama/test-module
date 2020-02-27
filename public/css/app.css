@@ -327,6 +327,104 @@ body {
   font-weight: bold;
 }
 
+.contacts-item {
+  background: #333;
+  padding: 0 0 30px 0;
+  color: white;
+  height: 100%;
+}
+
+.contacts-item-screen {
+  height: 145px;
+}
+
+.contacts-item-screen-1 {
+  background: url(/img/img9.jpg) no-repeat center;
+  background-size: cover;
+}
+
+.contacts-item-screen-2 {
+  background: url(/img/img10.jpg) no-repeat center;
+  background-size: cover;
+}
+
+.contacts-item-screen-3 {
+  background: url(/img/img11.jpg) no-repeat center;
+  background-size: cover;
+}
+
+.contacts-item-screen-4 {
+  background: url(/img/img12.jpg) no-repeat center;
+  background-size: cover;
+}
+
+.contacts-item-icon {
+  background: black;
+  margin: -45px auto 20px auto;
+  border-radius: 50px;
+  text-align: center;
+  width: 90px;
+  height: 90px;
+  font-size: 54px;
+  color: white;
+}
+
+.contacts-item-address {
+  margin: 20px 0 0 0;
+  text-align: center;
+  background-color: #515151;
+  font-size: 12px;
+  padding: 10px 0 10px 0;
+}
+
+.contacts-item-btn {
+  margin: 30px auto 0 auto;
+  display: table;
+  padding: 0 20px 0 20px;
+  border: 2px solid white;
+  height: 40px;
+  background: transparent;
+  color: white;
+  font-weight: bold;
+}
+
+.contacts-item-title {
+  text-align: center;
+  font-weight: bold;
+}
+
+.social-network {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 15px;
+}
+
+.social-network-icon {
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 20px;
+  display: grid;
+  justify-items: center;
+  background-color: #eee;
+  cursor: pointer;
+}
+
+.social-network-icon:hover {
+  background: black;
+}
+
+.social-network-icon:hover > i {
+  color: white;
+}
+
+.social-network-icon > i {
+  align-items: center;
+  justify-items: center;
+  display: grid;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
