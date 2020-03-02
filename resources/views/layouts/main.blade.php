@@ -16,10 +16,11 @@
     <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
 
     <!-- Font awesome-->
-    <script src="https://kit.fontawesome.com/7b9e63c713.js" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/7b9e63c713.js" crossorigin="anonymous"></script>
 
-    <script src="jquery.js" type="text/javascript"></script>
-    <script src="jquery.maskedinput.js" type="text/javascript"></script>
+    <script src="{{ URL::asset('js/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ URL::asset('js/jquery.maskedinput.js') }}"></script>
+    <script src="{{ URL::asset('js/app.js') }}"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light menu">
@@ -144,12 +145,11 @@
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">
         ©  2010 - {{date('Y')}}
-        <a href="https://mdbootstrap.com/education/bootstrap/">Spark Logistics</a>
+        <a>Spark Logistics</a>
     </div>
     <!-- Copyright -->
 
 </footer>
 <!-- Footer -->
-
 </body>
 </html>

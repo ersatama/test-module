@@ -1,7 +1,87 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
-<div class="container">
+    <div class="container" style="padding: 100px 0 100px 0;">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="row login-card">
+                    <div class="col-6 login-col">
+                        <div class="form-login" id="register_form">
+                            <div class="form-login-item">
+                                <div class="form-login-title">Регистрация в Spark Logistics!</div>
+                                <div class="form-login-icon">
+                                    <div class="form-login-icon-item">
+                                        <i class="fas fa-plane"></i>
+                                    </div>
+                                    <div class="form-login-icon-item">
+                                        <i class="fas fa-train"></i>
+                                    </div>
+                                    <div class="form-login-icon-item">
+                                        <i class="fas fa-ship"></i>
+                                    </div>
+                                    <div class="form-login-icon-item">
+                                        <i class="fas fa-shipping-fast"></i>
+                                    </div>
+                                </div>
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+                                    <div class="form-group">
+                                        <div class="form-login-group is-invalid">
+                                            <i class="fas fa-user"></i>
+                                            <input id="name" type="text" class="form-data-input form-data-phone" name="name" value="{{ old('name') }}" required autocomplete="none" autofocus placeholder="Имя">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-login-group is-invalid">
+                                            <i class="fas fa-user"></i>
+                                            <input id="name" type="text" class="form-data-input form-data-phone" name="name" value="{{ old('name') }}" required autocomplete="none" autofocus placeholder="Фамилия">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-login-group is-invalid">
+                                            <i class="fas fa-user"></i>
+                                            <input id="name" type="text" class="form-data-input form-data-phone" name="name" value="{{ old('name') }}" required autocomplete="none" autofocus placeholder="Отчество">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-login-group is-invalid">
+                                            <i class="fas fa-phone"></i>
+                                            <input id="new_phone" type="text" class="form-data-input form-data-phone" name="new_phone" value="{{ old('new_phone') }}" required autocomplete="none" autofocus>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-login-group">
+                                            <i class="fas fa-key"></i>
+                                            <input id="password" type="password" class="form-data-input login-input" name="password" required autocomplete="current-password" placeholder="{{ __('Password') }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn-success login-button">Дальше</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 login-col">
+                        <div class="form-register">
+                            <div class="form-register-bg"></div>
+                            <div class="form-register-item">
+                                <div class="form-register-title">Добро пожаловать в Spark Logistics!</div>
+                                <div class="form-register-desc">У вас же есть аккаунт?</div>
+                                <a href="/login">
+                                    <button class="form-register-button btn-primary">Войти</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @php
+        /*
+ <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -74,4 +154,7 @@
         </div>
     </div>
 </div>
+    */
+    @endphp
+
 @endsection
