@@ -594,6 +594,11 @@ body {
   display: table;
 }
 
+.error-input {
+  background: #fcd5d5;
+  box-shadow: 0 0 0 1px #ff7c7c inset;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

@@ -23,42 +23,41 @@
                                         <i class="fas fa-shipping-fast"></i>
                                     </div>
                                 </div>
-                                <form method="POST" action="{{ route('login') }}">
+                                <form method="POST" action="{{ route('register') }}">
                                     @csrf
                                     <div class="form-group">
                                         <div class="form-login-group is-invalid">
                                             <i class="fas fa-user"></i>
-                                            <input id="name" type="text" class="form-data-input form-data-phone" name="name" value="{{ old('name') }}" required autocomplete="none" autofocus placeholder="Имя">
+                                            <input id="name" type="text" class="form-data-input form-data-phone @error('name') error-input @enderror" name="name" value="{{ old('name') }}" required autocomplete="none" autofocus placeholder="Имя">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="form-login-group is-invalid">
                                             <i class="fas fa-user"></i>
-                                            <input id="name" type="text" class="form-data-input form-data-phone" name="name" value="{{ old('name') }}" required autocomplete="none" autofocus placeholder="Фамилия">
+                                            <input id="surname" type="text" class="form-data-input form-data-phone @error('surname') error-input @enderror" name="surname" value="{{ old('surname') }}" required autocomplete="none" autofocus placeholder="Фамилия">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="form-login-group is-invalid">
                                             <i class="fas fa-user"></i>
-                                            <input id="name" type="text" class="form-data-input form-data-phone" name="name" value="{{ old('name') }}" required autocomplete="none" autofocus placeholder="Отчество">
+                                            <input id="lastname" type="text" class="form-data-input form-data-phone @error('lastname') error-input @enderror" name="lastname" value="{{ old('lastname') }}" autocomplete="none" autofocus placeholder="Отчество">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="form-login-group is-invalid">
                                             <i class="fas fa-phone"></i>
-                                            <input id="new_phone" type="text" class="form-data-input form-data-phone" name="new_phone" value="{{ old('new_phone') }}" required autocomplete="none" autofocus>
+                                            <input id="phone" type="text" class="form-data-input form-data-phone @error('phone') error-input @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="none" autofocus>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="form-login-group">
                                             <i class="fas fa-key"></i>
-                                            <input id="password" type="password" class="form-data-input login-input" name="password" required autocomplete="current-password" placeholder="{{ __('Password') }}">
+                                            <input id="password" type="password" class="form-data-input login-input @error('password') error-input @enderror" minlength="8" maxlength="255" name="password" required autocomplete="current-password" placeholder="{{ __('Password') }}">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn-success login-button">Дальше</button>
+                                        <button type="submit" class="btn-success login-button">Создать аккаунт</button>
                                     </div>
-
                                 </form>
                             </div>
                         </div>
