@@ -8,7 +8,7 @@
                     <div class="collapse navbar-collapse w-100">
                         <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
                             <li class="nav-item">
-                                <a class="nav-link pl-0 text-nowrap text-dark" href="#"><i class="fas fa-home"></i> <span class="font-weight-bold ml-2">Главная</span></a>
+                                <a class="nav-link pl-0 text-nowrap text-primary" href="#"><i class="fas fa-home"></i> <span class="font-weight-bold ml-2">Главная</span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-nowrap pl-0 text-dark" href="#"><i class="fas fa-user"></i> <span class="d-none d-md-inline ml-2">Мой профиль</span></a>
@@ -23,7 +23,7 @@
                                 <a class="nav-link text-nowrap pl-0 text-dark" href="#"><i class="fas fa-info-circle"></i> <span class="d-none d-md-inline ml-2">Инструкция</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-nowrap pl-0 text-dark" href="#"><i class="fas fa-sign-out-alt"></i> <span class="d-none d-md-inline ml-2">Выйти</span></a>
+                                <a class="nav-link text-nowrap pl-0 text-dark" href="/logout"><i class="fas fa-sign-out-alt"></i> <span class="d-none d-md-inline ml-2">Выйти</span></a>
                             </li>
                         </ul>
                     </div>
