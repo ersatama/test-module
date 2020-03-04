@@ -42,6 +42,12 @@ Route::get('/contacts', function () {
 
 Auth::routes();
 
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/instruction', 'HomeController@instruction')->name('instruction');
+    Route::get('/profile', 'HomeController@profile')->name('profile');
+});
+
 Route::get('logout', 'Auth\LoginController@logout');
 
-Route::get('/home', 'HomeController@index')->name('home');
+
