@@ -33,4 +33,28 @@ class HomeController extends Controller
     public function profile() {
         return view('home.profile.profile');
     }
+
+    public function changePassword(Request $request) {
+        if ($request->has('old')) {
+
+            $validatedDate = $request->validate([
+                'old' => ['required', 'string', 'min:8'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+
+            if ($validatedDate->fails()) {
+                return redirect('home/profile/profile')
+                    ->withErrors($validatedDate)
+                    ->withInput();
+            }
+        }
+        if ($request->has('name')) {
+            $info = '';
+            $validatedDate = $request->validate([
+                'old' => ['required', 'string', 'min:8'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+
+        }
+    }
 }

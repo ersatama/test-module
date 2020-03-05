@@ -46,6 +46,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/instruction', 'HomeController@instruction')->name('instruction');
     Route::get('/profile', 'HomeController@profile')->name('profile');
+    Route::post('/profile', 'HomeController@changePassword');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');
