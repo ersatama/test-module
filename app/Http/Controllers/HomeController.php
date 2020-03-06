@@ -35,6 +35,7 @@ class HomeController extends Controller
     }
 
     public function changePassword(Request $request) {
+
         if ($request->has('old')) {
 
             $validatedDate = $request->validate([
@@ -42,12 +43,18 @@ class HomeController extends Controller
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
 
+            return $validatedDate->fails();
+
             if ($validatedDate->fails()) {
                 return redirect('home/profile/profile')
                     ->withErrors($validatedDate)
                     ->withInput();
+            } else {
+                return redirect('home/instruction/instruction');
             }
+
         }
+
         if ($request->has('name')) {
             $info = '';
             $validatedDate = $request->validate([

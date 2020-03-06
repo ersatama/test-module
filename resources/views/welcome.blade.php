@@ -21,12 +21,13 @@
             </div>
         </div>
     </div>
+    <img src="https://mdbootstrap.com/img/logo/mdb-transparent-250px.png" class="animated bounce infinite" alt="Transparent MDB Logo" id="animated-img1">
     <div class="bg-services">
         <div class="container">
             <h1 class="bg-services-title">УСЛУГИ</h1>
             <div class="row">
                 <div class="col-4">
-                    <div class="services-item">
+                    <div class="services-item animated flash">
                         <div class="services-item-img">
                             <img src="/img/img2.jpg" width="100%">
                         </div>
