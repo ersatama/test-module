@@ -34,6 +34,18 @@ Route::prefix('services')->group(function () {
         return view('services.storage.storage');
     });
 
+    Route::get('express', function () {
+        return view('services.express.express');
+    });
+
+    Route::get('russia', function () {
+        return view('services.russia.russia');
+    });
+
+});
+
+Route::get('/services', function () {
+    return view('services.services');
 });
 
 Route::get('/contacts', function () {

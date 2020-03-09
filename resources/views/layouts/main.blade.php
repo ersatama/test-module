@@ -25,7 +25,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light menu">
     <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img src="/img/logo.png" width="127" height="60" class="d-inline-block align-top" alt="">
         </a>
         <div class="collapse navbar-collapse ml-5" id="navbarNavAltMarkup">
@@ -89,28 +89,28 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto text-light w-100 menu-ul">
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Услуги</a>
+                    <a class="nav-link text-light" href="/services">Услуги</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">О нас</a>
+                    <a class="nav-link text-light" href="/about">О нас</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Авиаперевозки</a>
+                    <a class="nav-link text-light" href="/services/avia">Авиаперевозки</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Грузоперевозки</a>
+                    <a class="nav-link text-light" href="/services/cargo">Грузоперевозки</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Проектные перевозки</a>
+                    <a class="nav-link text-light" href="/services/project">Проектные перевозки</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Экспресс доставка</a>
+                    <a class="nav-link text-light" href="/services/express">Экспресс доставка</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Услуги склада</a>
+                    <a class="nav-link text-light" href="/services/storage">Услуги склада</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Контакты</a>
+                    <a class="nav-link text-light" href="/contacts">Контакты</a>
                 </li>
             </ul>
         </div>
