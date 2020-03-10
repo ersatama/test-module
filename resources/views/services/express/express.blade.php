@@ -4,7 +4,7 @@
         <h1 class="mt-5">ЭКСПРЕСС ДОСТАВКА</h1>
         <div class="services-description">Быстро. Качественно. В срок.</div>
         <div class="row mt-5 mb-5">
-            <div class="col-6">
+            <div class="col-12 col-lg-6">
                 <div class="services-content-main">
                     <div class="services-content-main-item">
                         <div class="services-content-main-item-title">КУРЬЕРСКАЯ ПОЧТА.</div>
@@ -20,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-12 col-lg-6">
                 <div class="spark-logo">
                     <img src="/img/logo2.png">
                 </div>

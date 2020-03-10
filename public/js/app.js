@@ -49523,8 +49523,8 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var app = new Vue({
-  el: '#app'
+$(document).ready(function () {
+  AOS.init();
 });
 
 /***/ }),
@@ -49661,8 +49661,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! B:\OSPanel\domains\spark\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! B:\OSPanel\domains\spark\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\OSPanel\domains\spark\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\OSPanel\domains\spark\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

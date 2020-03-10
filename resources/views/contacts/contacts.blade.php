@@ -4,8 +4,8 @@
         <h1 class="bg-services-title">КОНТАКТЫ</h1>
         <div class="bg-deliver-desc">УЗНАЙТЕ ПОДРОБНОСТИ</div>
         <div class="row mt-5 mb-5">
-            <div class="col-3">
-                <div class="contacts-item">
+            <div class="col-6 col-lg-3 mt-3">
+                <div class="contacts-item" data-aos="flip-left" data-aos-easing="linear" data-aos-duration="300" data-aos-delay="0">
                     <div class="contacts-item-screen contacts-item-screen-1"></div>
                     <div class="contacts-item-icon">
                         <i class="fas fa-map-marker-alt"></i>
@@ -15,8 +15,8 @@
                     <button class="contacts-item-btn">+7 (727) 345-00-75</button>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="contacts-item">
+            <div class="col-6 col-lg-3 mt-3">
+                <div class="contacts-item" data-aos="flip-left" data-aos-easing="linear" data-aos-duration="300" data-aos-delay="50">
                     <div class="contacts-item-screen contacts-item-screen-2"></div>
                     <div class="contacts-item-icon">
                         <i class="fas fa-map-marker-alt"></i>
@@ -26,8 +26,8 @@
                     <button class="contacts-item-btn">+7 (7172) 27-74-74</button>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="contacts-item">
+            <div class="col-6 col-lg-3 mt-3">
+                <div class="contacts-item" data-aos="flip-left" data-aos-easing="linear" data-aos-duration="300" data-aos-delay="100">
                     <div class="contacts-item-screen contacts-item-screen-3"></div>
                     <div class="contacts-item-icon">
                         <i class="fas fa-map-marker-alt"></i>
@@ -37,8 +37,8 @@
                     <button class="contacts-item-btn">+7 (7212) 51-27-76</button>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="contacts-item">
+            <div class="col-6 col-lg-3 mt-3">
+                <div class="contacts-item" data-aos="flip-left" data-aos-easing="linear" data-aos-duration="300" data-aos-delay="150">
                     <div class="contacts-item-screen contacts-item-screen-4"></div>
                     <div class="contacts-item-icon">
                         <i class="fas fa-map-marker-alt"></i>

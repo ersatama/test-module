@@ -1,6 +1,6 @@
 <div class="row justify-content-center mb-5">
     <div class="col-auto">
-        <div class="cargo-phone">
+        <div class="cargo-phone" data-aos="flip-up">
             <div class="cargo-phone-icon">
                 <i class="fas fa-phone-volume"></i>
             </div>

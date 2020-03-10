@@ -6,25 +6,20 @@ body {
 }
 .bg-container {
     background: url(/img/img-1.jpg) no-repeat top center;
+    background-attachment: fixed;
     &-shadow {
         background: rgba(0,0,0,.6);
     }
 }
 .main-page {
-    height: 600px;
     &-form {
         min-height: 350px;
         background: white;
-        top: 50%;
-        transform: translate(0, -50%);
-        position: absolute;
-        right: 25px;
-        left: 25px;
+        position: relative;
         border-radius: 4px;
     }
     &-content {
         display: grid;
-        height: 600px;
         & > div {
             justify-self: center;
             align-self: center;
@@ -75,9 +70,14 @@ body {
     &-desc {
         color: grey;
     }
+    &-cloud {
+        position: absolute;
+        margin: -105px 0 0 0;
+        width: 100%;
+    }
 }
 .bg-deliver {
-    background: white;
+    background: rgb(240,240,240);
     padding: 25px 0 25px 0;
     &-title {
         text-align: center;
@@ -111,6 +111,9 @@ body {
             &-wallpaper-3 {
                 background: url(/img/i4.png) no-repeat center;
             }
+            & > div {
+                background-size: cover;
+            }
             &-title {
                 text-align: center;
                 color: white;
@@ -126,6 +129,8 @@ body {
 .bg-characteristics {
     background: url(/img/img8.jpg) no-repeat center;
     background-size: cover;
+    background-attachment: fixed;
+
     &-title {
         text-align: center;
         margin: 60px auto 10px auto;
@@ -223,8 +228,9 @@ body {
 }
 .spark-logo {
     width: 100%;
-    position: absolute;
+    position: relative;
     bottom: 0;
+    overflow: hidden;
 }
 .cargo-phone {
     text-align: center;
@@ -313,6 +319,7 @@ body {
         justify-items: center;
         background-color: #eee;
         cursor: pointer;
+        text-decoration: none;
         &:hover {
             background: black;
             & > i {
