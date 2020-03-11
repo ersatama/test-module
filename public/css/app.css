@@ -244,6 +244,7 @@ body {
 .services-content-main {
   background-color: #333 !important;
   color: white;
+  margin-bottom: 50px;
 }
 
 .services-content-main-item {
@@ -382,6 +383,12 @@ body {
   display: grid;
 }
 
+@media (max-width: 750px) {
+  .login-container {
+    padding: 30px 0 30px 0 !important;
+  }
+}
+
 .menu {
   border-bottom: solid 1px transparent !important;
 }
@@ -403,6 +410,19 @@ body {
 
 .menu-ul > li > a:hover {
   color: #72c02c !important;
+}
+
+.navbar-menu-main {
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 750px) {
+  .navbar-menu-mobile-mini {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+    margin: 0 20px 20px 20px;
+    border-radius: 3px;
+    background: #fafafa;
+  }
 }
 
 .nav-menu-item {
@@ -431,7 +451,35 @@ body {
 }
 
 .navbar-burger {
-  margin: 15px 0 0 0;
+  margin: 16px 0 0 0;
+  border: none !important;
+}
+
+.navbar-menu-item {
+  background: #c1dd52;
+  padding: 0 15px 0 15px;
+  margin: 10px 0 0 0;
+  border-radius: 30px;
+  font-weight: bold;
+}
+
+.navbar-menu-item > .nav-menu-item {
+  padding: 8px;
+}
+
+.navbar-menu-item:last-child {
+  margin-bottom: 10px;
+}
+
+.navbar-menu-item-info {
+  padding: 0 15px 0 15px;
+  margin: 10px 0 0 0;
+  border-radius: 30px;
+  font-weight: bold;
+}
+
+.navbar-menu-item-info > .nav-menu-item {
+  padding: 8px;
 }
 
 .login-button {

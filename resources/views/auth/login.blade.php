@@ -1,10 +1,10 @@
 @extends('layouts.main')
 @section('content')
-    <div class="container" style="padding: 100px 0 100px 0;">
+    <div class="container login-container" style="padding: 100px 0 100px 0;">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-lg-4 col-10">
                 <div class="row login-card">
-                    <div class="col-6 login-col">
+                    <div class="col-12 d-none col-lg-6 login-col">
                         <div class="form-register">
                             <div class="form-register-bg"></div>
                             <div class="form-register-item">
@@ -14,7 +14,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6 login-col">
+                    <div class="col-12 login-col">
                         <div class="form-login" id="login_form">
 
                             <div class="form-login-item">
@@ -38,7 +38,7 @@
                                     <div class="form-group">
                                         <div class="form-login-group is-invalid">
                                             <i class="fas fa-phone"></i>
-                                            <input id="phone" type="text" class="form-data-input form-data-phone" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+                                            <input id="phone" type="text" class="form-data-input form-data-phone" name="iin" value="{{ old('iin') }}" required autocomplete="iin" autofocus>
                                         </div>
                                     </div>
                                     <div class="form-group">

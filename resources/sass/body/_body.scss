@@ -212,8 +212,9 @@ body {
     font-size: 12px;
 }
 .services-content-main {
-    background-color: #333!important;
+    background-color: #333 !important;
     color: white;
+    margin-bottom: 50px;
     &-item {
         padding: 25px;
         border-top: 1px solid black;
@@ -331,6 +332,11 @@ body {
             justify-items: center;
             display: grid;
         }
+    }
+}
+@media (max-width: 750px) {
+    .login-container {
+        padding: 30px 0 30px 0 !important;
     }
 }
 

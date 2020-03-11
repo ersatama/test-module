@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
+    <meta name="csrf-param" content="csrf">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -26,8 +27,8 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg menu navbar-light bg-light d-block d-md-none">
-        <a class="navbar-brand" href="#">
+    <nav class="navbar navbar-expand-lg menu navbar-light bg-light d-block d-md-none navbar-menu-main">
+        <a class="navbar-brand" href="/">
             <img src="/img/logo.png" width="127" height="60" class="d-inline-block align-top" alt="">
         </a>
         <button class="navbar-toggler float-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,51 +36,47 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item active navbar-menu-item">
                     <a class="nav-link" href="/services">Услуги</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item navbar-menu-item">
                     <a class="nav-link" href="/about">О нас</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item navbar-menu-item">
                     <a class="nav-link" href="/services/avia">Авиаперевозки</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item navbar-menu-item">
                     <a class="nav-link" href="/services/cargo">Грузоперевозки</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item navbar-menu-item">
                     <a class="nav-link" href="/services/project">Проектные перевозки</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item navbar-menu-item">
                     <a class="nav-link" href="/services/express">Экспресс доставка</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item navbar-menu-item">
                     <a class="nav-link" href="/services/storage">Услуги склада</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item navbar-menu-item">
                     <a class="nav-link" href="/contacts">Контакты</a>
                 </li>
-                <li class="nav-item ml-4 mr-4">
+                <li class="nav-item navbar-menu-item-info">
                     <div class="nav-menu-item">
-                        <div class="nav-menu-item-icon">
+                        <div class="nav-menu-item-icon nav-menu-item-content">
                             <i class="far fa-clock" aria-hidden="true"></i>
                         </div>
                         <div class="nav-menu-item-content">
                             <div class="nav-menu-item-content-link">Пн-Пт: 09:00 - 18:00</div>
                         </div>
                     </div>
-                </li>
-                <li class="nav-item ml-4 mr-4">
                     <div class="nav-menu-item">
-                        <div class="nav-menu-item-icon">
+                        <div class="nav-menu-item-icon nav-menu-item-content">
                             <i class="fas fa-phone" aria-hidden="true"></i>
                         </div>
                         <div class="nav-menu-item-content">
                             <a href="#" class="nav-menu-item-content-link">+7 (727) 345-00-75</a>
                         </div>
                     </div>
-                </li>
-                <li class="nav-item ml-4 mr-4">
                     <div class="nav-menu-item">
                         <div class="nav-menu-item-icon">
                             <i class="far fa-envelope-open"></i>
@@ -89,17 +86,29 @@
                         </div>
                     </div>
                 </li>
+                @if(Auth::check())
+                    <li class="nav-item navbar-menu-item">
+                        <a class="nav-link btn" href="/logout">Выйти</a>
+                    </li>
+                @else
+                    <li class="nav-item navbar-menu-item">
+                        <a class="nav-link btn" href="/login">Войти в кабинет</a>
+                    </li>
+                    <!--<li class="nav-item navbar-menu-item">
+                        <a class="nav-link btn" href="/register">Зарегистрироваться</a>
+                    </li>-->
+                @endif
+
             </ul>
         </div>
     </nav>
-
 <nav class="navbar navbar-expand-lg navbar-light menu d-none d-md-block">
     <div class="container">
         <a class="navbar-brand" href="/">
             <img src="/img/logo.png" width="127" height="60" class="d-inline-block align-top" alt="">
         </a>
         <div class="collapse navbar-collapse ml-5" id="navbarNavAltMarkup">
-            <ul class="navbar-nav menu-ul">
+                <ul class="navbar-nav menu-ul">
                 <li class="nav-item ml-4 mr-4">
                     <div class="nav-menu-item">
                         <div class="nav-menu-item-icon">
@@ -145,11 +154,19 @@
                         <div class="social-network-icon">
                             <i class="fab fa-instagram"></i>
                         </div>
-                        <a href="/login">
-                            <div class="social-network-icon">
-                                <i class="fas fa-sign-in-alt"></i>
-                            </div>
-                        </a>
+                        @if(Auth::check())
+                            <a href="/logout">
+                                <div class="social-network-icon">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                </div>
+                            </a>
+                        @else
+                            <a href="/login">
+                                <div class="social-network-icon">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                </div>
+                            </a>
+                        @endif
                     </div>
                 </li>
             </ul>

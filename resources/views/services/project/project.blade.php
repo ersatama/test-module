@@ -18,7 +18,7 @@
             </div>
             <div class="col-12 col-lg-6">
                 <div class="spark-logo">
-                    <img src="/img/logo2.png">
+                    <img src="/img/logo2.png" width="100%">
                 </div>
             </div>
         </div>

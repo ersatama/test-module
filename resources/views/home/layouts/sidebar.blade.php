@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand navbar-dark text-dark flex-md-column flex-row align-items-start py-2">
-    <div class="collapse navbar-collapse w-100">
+<nav class="navbar navbar-expand navbar-dark text-dark flex-md-column flex-row align-items-start py-2 navbar-menu-mobile-mini">
+    <div class="collapse navbar-collapse w-100 ">
         <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
             <li class="nav-item">
                 <a class="nav-link pl-0 text-nowrap @if(Request::is('home')) text-primary @else text-dark @endif" href="/home"><i class="fas fa-home"></i> <span class="font-weight-bold ml-2">Главная</span></a>
