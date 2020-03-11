@@ -34,7 +34,7 @@
                                     <div class="form-group">
                                         <div class="form-login-group is-invalid">
                                             <i class="fas fa-user"></i>
-                                            <input id="surname" type="text" class="form-data-input form-data-phone @error('iin') error-input @enderror" name="surname" value="{{ old('iin') }}" required autocomplete="none" autofocus placeholder="ИИН">
+                                            <input id="surname" type="text" class="form-data-input form-data-phone @error('iin') error-input @enderror" name="iin" value="{{ old('iin') }}" required autocomplete="none" autofocus placeholder="ИИН">
                                         </div>
                                     </div>
                                     <div class="form-group">
