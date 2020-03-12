@@ -6,6 +6,7 @@
 
 body {
   background: white !important;
+  overflow-x: hidden !important;
 }
 
 .bg-container {
@@ -389,6 +390,17 @@ body {
   }
 }
 
+.row-body {
+  margin: 0 !important;
+}
+
+.form-receiver {
+  padding: 15px;
+  background: #e9ecef;
+  border: 1px solid #dadfe3;
+  border-radius: 3px;
+}
+
 .menu {
   border-bottom: solid 1px transparent !important;
 }
@@ -482,6 +494,10 @@ body {
   padding: 8px;
 }
 
+.navbar-icon {
+  color: black;
+}
+
 .login-button {
   margin: 10px auto 0 auto;
   border: 2px solid black;
@@ -515,6 +531,7 @@ body {
   min-height: 500px;
   border-radius: 10px;
   overflow: hidden;
+  margin: 0 !important;
 }
 
 .login-col {

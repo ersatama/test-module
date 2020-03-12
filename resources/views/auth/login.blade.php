@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
     <div class="container login-container" style="padding: 100px 0 100px 0;">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center row-body">
             <div class="col-lg-4 col-10">
                 <div class="row login-card">
                     <div class="col-12 d-none col-lg-6 login-col">
@@ -16,7 +16,6 @@
                     </div>
                     <div class="col-12 login-col">
                         <div class="form-login" id="login_form">
-
                             <div class="form-login-item">
                                 <div class="form-login-title">Войти в Spark Logistics!</div>
                                 <div class="form-login-icon">
@@ -37,8 +36,8 @@
                                     @csrf
                                     <div class="form-group">
                                         <div class="form-login-group is-invalid">
-                                            <i class="fas fa-phone"></i>
-                                            <input id="phone" type="text" class="form-data-input form-data-phone" name="iin" value="{{ old('iin') }}" required autocomplete="iin" autofocus>
+                                            <i class="fas fa-user"></i>
+                                            <input id="phone" type="text" class="form-data-input form-data-phone" name="iin" value="{{ old('iin') }}" required autocomplete="iin" autofocus placeholder="БИН или ИИН">
                                         </div>
                                     </div>
                                     <div class="form-group">

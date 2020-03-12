@@ -35,6 +35,7 @@ Route::prefix('services')->group(function () {
     Route::get('russia', function () {
         return view('services.russia.russia');
     });
+
 });
 
 Route::get('/services', function () {
@@ -54,6 +55,7 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/instruction', 'HomeController@instruction')->name('instruction');
+    Route::get('/order', 'HomeController@order')->name('orders');
     Route::get('/profile', 'HomeController@profile')->name('profile');
     Route::post('/profile', 'HomeController@changePassword');
 });

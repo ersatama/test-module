@@ -34,6 +34,10 @@ class HomeController extends Controller
         return view('home.profile.profile');
     }
 
+    public function order() {
+        return view('home.order.order');
+    }
+
     public function changePassword(Request $request) {
 
         if ($request->has('old')) {

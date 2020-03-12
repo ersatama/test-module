@@ -31,4 +31,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 $(document).ready(function() {
     AOS.init();
+    $(".new-receiver").bind('click', function() {
+        alert();
+    });
 });

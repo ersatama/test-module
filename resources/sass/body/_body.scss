@@ -3,6 +3,7 @@
 }
 body {
     background: white !important;
+    overflow-x: hidden !important;
 }
 .bg-container {
     background: url(/img/img-1.jpg) no-repeat top center;
@@ -338,6 +339,15 @@ body {
     .login-container {
         padding: 30px 0 30px 0 !important;
     }
+}
+.row-body {
+    margin: 0 !important;
+}
+.form-receiver {
+    padding: 15px;
+    background: #e9ecef;
+    border: 1px solid #dadfe3;
+    border-radius: 3px;
 }
 
 

@@ -49525,6 +49525,9 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 
 $(document).ready(function () {
   AOS.init();
+  $(".new-receiver").bind('click', function () {
+    alert();
+  });
 });
 
 /***/ }),
