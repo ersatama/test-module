@@ -117,7 +117,9 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="receiver-list">
 
+                        </div>
                         <div class="row justify-content-sm-center">
                             <div class="col-12 col-sm-5">
                                 <button type="submit" class="btn btn-success btn-block">Добавить заказ</button>
