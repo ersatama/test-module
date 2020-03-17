@@ -41,8 +41,9 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Страна</label>
                                     <select class="form-control" name="country_consignor">
-                                        <option>Казахстан</option>
-                                        <option>Россия</option>
+                                        @foreach($countries as $country)
+                                            <option value="{{$country['id']}}">{{$country['russian_name']}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

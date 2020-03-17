@@ -47,6 +47,7 @@ $(document).ready(function() {
 
     $(".new-receiver").bind('click',function() {
         let count = $(".form-receiver").length;
+
         $("#receiver-list").append('<div class="form-receiver mb-3 w-100" id="receiver-">\n' +
             '                            <button class="btn btn-danger float-right btn-sm receiver-delete">\n' +
             '                                <i class="fas fa-trash"></i>\n' +
@@ -262,7 +263,9 @@ $(document).ready(function() {
             '                                </div>\n' +
             '                            </div>\n' +
             '                        </div>');
+
         $(".receiver-hide").bind('click', function(event) {
+
             event.preventDefault();
 
             $(this).toggleClass('reverse').closest('.form-receiver ').find('.view-block').fadeToggle(0);
