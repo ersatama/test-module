@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repositories\Country\CountryRepositoryEloquent;
 
 class HomeController extends Controller
 {
@@ -11,9 +12,12 @@ class HomeController extends Controller
      *
      * @return void
      */
+    protected $country;
+
     public function __construct()
     {
         $this->middleware('auth');
+        $this->country = new CountryRepositoryEloquent();
     }
 
     /**
@@ -23,7 +27,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.home');
+
+        return view('home.home', compact('country'));
     }
 
     public function instruction() {
@@ -35,7 +40,8 @@ class HomeController extends Controller
     }
 
     public function order() {
-        return view('home.order.order');
+        $countries = $this->country->all();
+        return view('home.order.order', compact('countries'));
     }
 
     public function changePassword(Request $request) {

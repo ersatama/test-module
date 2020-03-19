@@ -401,6 +401,10 @@ body {
   border-radius: 3px;
 }
 
+.reverse {
+  transform: rotate(180deg);
+}
+
 .menu {
   border-bottom: solid 1px transparent !important;
 }
