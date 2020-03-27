@@ -56,6 +56,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/instruction', 'HomeController@instruction')->name('instruction');
     Route::get('/order', 'HomeController@order')->name('orders');
+    Route::post('/order/save', 'HomeController@save');
+    Route::get('/order/city_list/{id}','HomeController@getCities');
+    Route::get('/order/countries','HomeController@countries');
+    Route::get('/order/template/{name}','HomeController@getTemplateByName');
+    Route::get('/order/template_list','HomeController@receiverTemplates');
+    Route::get('/order/receiver/{id}','HomeController@receiver');
     Route::get('/profile', 'HomeController@profile')->name('profile');
     Route::post('/profile', 'HomeController@changePassword');
 });

@@ -23,7 +23,6 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="{{ URL::asset('js/jquery-3.4.1.min.js') }}"></script>
     <script src="{{ URL::asset('js/jquery.maskedinput.js') }}"></script>
-    <script src="{{ URL::asset('js/app.js') }}"></script>
 
 </head>
 <body>
@@ -205,8 +204,9 @@
         </div>
     </div>
 </nav>
+<div id="app">
 @yield('content')
-
+</div>
 <!-- Footer -->
 <footer class="page-footer font-small special-color-dark pt-4 footer">
 
@@ -240,5 +240,6 @@
 
 </footer>
 <!-- Footer -->
+<script src="{{ URL::asset('js/app.js') }}"></script>
 </body>
 </html>

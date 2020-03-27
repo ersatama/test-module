@@ -27,58 +27,21 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="col">Дата создания</th>
-                                <td>Номер заказа</td>
-                                <td>Номер накладной</td>
-                                <td>Откуда</td>
-                                <td>Куда</td>
-                                <td>Тип доставки</td>
-                                <td>Места</td>
-                                <td>Вес (кг)</td>
-                                <td>Обьем (м3)</td>
-                                <td>Статус</td>
-                                <td>Примечание</td>
-                            </tr>
-                            <tr>
-                                <th scope="col">Дата создания</th>
-                                <td>Номер заказа</td>
-                                <td>Номер накладной</td>
-                                <td>Откуда</td>
-                                <td>Куда</td>
-                                <td>Тип доставки</td>
-                                <td>Места</td>
-                                <td>Вес (кг)</td>
-                                <td>Обьем (м3)</td>
-                                <td>Статус</td>
-                                <td>Примечание</td>
-                            </tr>
-                            <tr>
-                                <th scope="col">Дата создания</th>
-                                <td>Номер заказа</td>
-                                <td>Номер накладной</td>
-                                <td>Откуда</td>
-                                <td>Куда</td>
-                                <td>Тип доставки</td>
-                                <td>Места</td>
-                                <td>Вес (кг)</td>
-                                <td>Обьем (м3)</td>
-                                <td>Статус</td>
-                                <td>Примечание</td>
-                            </tr>
-                            <tr>
-                                <th scope="col">Дата создания</th>
-                                <td>Номер заказа</td>
-                                <td>Номер накладной</td>
-                                <td>Откуда</td>
-                                <td>Куда</td>
-                                <td>Тип доставки</td>
-                                <td>Места</td>
-                                <td>Вес (кг)</td>
-                                <td>Обьем (м3)</td>
-                                <td>Статус</td>
-                                <td>Примечание</td>
-                            </tr>
+                                @foreach($orders as $order)
+                                    <tr class="text-capitalize">
+                                        <th scope="col">{{$order['created_at']}}</th>
+                                        <td>{{$order['id']}}</td>
+                                        <td>{{$order['created_at']}}</td>
+                                        <td>{{$order['city']['russian_name']}}</td>
+                                        <td>{{$order['city']['russian_name']}}</td>
+                                        <td>Тип доставки</td>
+                                        <td>Места</td>
+                                        <td>Вес (кг)</td>
+                                        <td>Обьем (м3)</td>
+                                        <td>Статус</td>
+                                        <td>Примечание</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

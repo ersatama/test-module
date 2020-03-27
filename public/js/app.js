@@ -1899,39 +1899,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/bootstrap/dist/js/bootstrap.js":
 /*!*****************************************************!*\
   !*** ./node_modules/bootstrap/dist/js/bootstrap.js ***!
@@ -37287,160 +37254,6 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*******************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
-  \********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode /* vue-cli only */
-) {
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functional component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-
 /***/ "./node_modules/vue/dist/vue.common.dev.js":
 /*!*************************************************!*\
   !*** ./node_modules/vue/dist/vue.common.dev.js ***!
@@ -49503,9 +49316,232 @@ module.exports = function(module) {
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+var token = $("meta[name='csrf-token']").attr("content");
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+var app = new Vue({
+  el: '#app',
+  data: {
+    status: false,
+    order: 0,
+    cities: [],
+    countries: [],
+    template: '',
+    save: true,
+    senderTemplate: {
+      name: '',
+      iin: '',
+      country: '',
+      region: '',
+      city: '',
+      index: '',
+      street: '',
+      house: '',
+      office: '',
+      person: {
+        name: '',
+        phone: '',
+        take_date: '',
+        take_time: ''
+      }
+    },
+    sender: {},
+    templateList: [],
+    receiverTemplate: {
+      template: '',
+      saveTemplate: false,
+      type: 0,
+      name: '',
+      iin: '',
+      code: '',
+      countries: [],
+      country: 1,
+      region: '',
+      cities: [],
+      city: '',
+      index: '',
+      house: '',
+      street: '',
+      office: '',
+      contactPerson: {
+        name: '',
+        phone: ''
+      },
+      info: {
+        place: '',
+        weight: '',
+        volume: '',
+        annotation: ''
+      },
+      payment: {
+        personType: 0,
+        typeList: ['Перечислением на счет', 'Банковской картой', 'Наличными'],
+        type: 0
+      },
+      deliver: {
+        type: 0,
+        payment: '',
+        price: ''
+      }
+    },
+    receiver: [],
+    model: ''
+  },
+  created: function created() {
+    this.setValues();
+    this.setSender();
+  },
+  mounted: function mounted() {
+    this.changeCity();
+    this.getTemplateList();
+    this.getCountries();
+    this.receiverCity(1);
+  },
+  methods: {
+    readyOrder: function readyOrder() {
+      if (this.sender.region.trim() === '') {
+        return $("#sender_region").focus();
+      } else if (this.sender.street.trim() === '') {
+        return $("#sender_street").focus();
+      } else if (this.sender.house.trim() === '') {
+        return $("#sender_house").focus();
+      } else if (this.sender.person.name.trim() === '') {
+        return $("#sender_person_name").focus();
+      } else if (this.sender.person.phone.trim() === '') {
+        return $("#sender_person_phone").focus();
+      } else if (this.sender.person.take_date.trim() === '') {
+        return $("#sender_person_take_date").focus();
+      } else if (this.sender.person.take_time.trim() === '') {
+        return $("#sender_person_take_time").focus();
+      }
+      /*this.receiver.forEach(function callback(value, index) {
+      	if (value.name.trim() === '') {
+      		return $("#name-"+index).focus();
+      	} else if (value.iin.trim() === '') {
+      		return $("#iin-"+index).focus();
+      	} else if (value.region.trim() === '') {
+      		return $("#region-"+index).focus();
+      	} else if (value.street.trim() === '') {
+      		return $("#street-"+index).focus();
+      	} else if (value.contactPerson.name.trim() === '') {
+      		return $("#contact-person-name-"+index).focus();
+      	} else if (value.contactPerson.phone.trim() === '') {
+      		return $("#contact-person-phone-"+index).focus();
+      	} else if (value.info.place.trim() === '') {
+      		return $("#contact-info-place-"+index).focus();
+      	} else if (value.info.weight.trim() === '') {
+      		return $("#contact-info-weight-"+index).focus();
+      	} else if (value.info.volume.trim() === '') {
+      		return $("#contact-info-volume-"+index).focus();
+      	}
+      });*/
+
+
+      if (!this.template.trim()) {
+        this.template = $("#template").data('value');
+      }
+
+      axios.post('/order/save', {
+        template: {
+          name: this.template,
+          save: this.save
+        },
+        sender: this.sender,
+        receiver: this.receiver
+      }).then(function (response) {
+        app.order = response.data;
+        app.status = true;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    setValues: function setValues() {
+      this.senderTemplate.country = $("#sender_country").children("option:selected").val();
+      this.senderTemplate.name = $("#sender_name").val().trim();
+      this.senderTemplate.iin = $("#sender_iin").val().trim();
+    },
+    setSender: function setSender() {
+      this.sender = Object.assign({}, this.senderTemplate);
+      this.receiver = [];
+      this.changeCity();
+      var date = new Date();
+      var day = date.getDate();
+      day = day < 10 ? '0' + day : day;
+      var month = date.getMonth() + 1;
+      month = month < 10 ? '0' + month : month;
+      var hours = date.getHours();
+      hours = hours < 10 ? '0' + hours : hours;
+      var minutes = date.getMinutes();
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      var seconds = date.getSeconds();
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+      var dateTemp = this.senderTemplate.iin + '_0_' + day + '-' + month + '-' + date.getFullYear() + '_' + hours + ':' + minutes + ':' + seconds;
+      $("#template").attr('placeholder', dateTemp).data('data-value', dateTemp);
+    },
+    refreshOrder: function refreshOrder() {
+      this.template = '';
+      this.save = true;
+      this.status = false;
+      this.getTemplateList();
+      this.setSender();
+    },
+    receiverCity: function receiverCity(id) {
+      var _this = this;
+
+      axios.get('order/city_list/' + id).then(function (response) {
+        return _this.receiverTemplate.cities = response.data, _this.receiverTemplate.city = _this.receiverTemplate.cities[0].id;
+      }); //this.receiverTemplate.city = this.receiverTemplate.cities[0].id;
+    },
+    changeCityReceiver: function changeCityReceiver(id) {
+      var _this2 = this;
+
+      axios.get('order/city_list/' + this.receiver[id].country).then(function (response) {
+        return _this2.receiver[id].cities = response.data, _this2.receiver[id].city = _this2.receiver[id].cities[0].id;
+      });
+    },
+    show: function show(a) {
+      console.log(a);
+    },
+    newReceiver: function newReceiver() {
+      this.receiver.push(Object.assign({}, this.receiverTemplate));
+      this.receiver[this.receiver.length - 1].cities = this.receiverTemplate.cities;
+    },
+    getCountries: function getCountries() {
+      var _this3 = this;
+
+      axios.get('order/countries').then(function (response) {
+        return _this3.countries = response.data, _this3.receiverTemplate.countries = response.data;
+      });
+    },
+    getTemplateList: function getTemplateList() {
+      var _this4 = this;
+
+      axios.get('order/template_list').then(function (response) {
+        return _this4.templateList = response.data;
+      });
+    },
+    removeReceiver: function removeReceiver(id) {
+      this.receiver.splice(id, 1);
+    },
+    viewReceiver: function viewReceiver(id) {
+      $("#form-receiver-" + id).find('.receiver-hide').toggleClass('reverse').end().find('.view-block').fadeToggle(0);
+    },
+    changeCity: function changeCity() {
+      var _this5 = this;
+
+      axios.get('order/city_list/' + this.sender.country).then(function (response) {
+        return _this5.cities = response.data, _this5.sender.city = response.data[0].id;
+      });
+    },
+    changeTemplate: function changeTemplate() {
+      axios.get('order/template/' + this.template).then(function (response) {
+        app.sender = JSON.parse(response.data[0].data);
+      });
+    }
+  }
+});
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -49515,8 +49551,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
  */
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -49533,9 +49569,14 @@ $(document).ready(function () {
     event.preventDefault();
     $(this).closest('.form-receiver').remove();
   });
-  $(".new-receiver").bind('click', function () {
+  $(".new-receiver").bind('blur', function (event) {
+    return;
+    event.preventDefault();
+    event.stopPropagation();
+    var count = 1;
+    count++;
     var count = $(".form-receiver").length;
-    $("#receiver-list").append('<div class="form-receiver mb-3 w-100" id="receiver-">\n' + '                            <button class="btn btn-danger float-right btn-sm receiver-delete">\n' + '                                <i class="fas fa-trash"></i>\n' + '                            </button>\n' + '                            <button class="btn btn-success float-right btn-sm mr-3 receiver-hide reverse">\n' + '                                <i class="fas fa-chevron-down"></i>\n' + '                            </button>\n' + '                            <h5 class="text-success mt-1">Получатель</h5>\n' + '                            <div class="view-block">\n' + '                                <div class="row" id="receiver-0-body">\n' + '                                    <div class="col-12">\n' + '                                        <div class="form-group">\n' + '                                            <label for="exampleInputEmail1">Шаблон</label>\n' + '                                            <input list="select_1" class="form-control" value="" name="selectTemplate_1" id="selectTemplate_1">\n' + '                                            <datalist id="select_1">\n' + '                                                <option value="ISO-8859-1">ISO-8859-1</option>\n' + '                                                <option value="cp1252">ANSI</option>\n' + '                                                <option value="utf8">UTF-8</option>\n' + '                                            </datalist>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12">\n' + '                                        <div class="custom-control custom-checkbox">\n' + '                                            <input type="checkbox" class="custom-control-input" id="customCheck" name="example1" checked="">\n' + '                                            <label class="custom-control-label" for="customCheck">Сохранить шаблон</label>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12">\n' + '                                        <div class="form-group mt-3">\n' + '                                            <div class="btn-group-vertical btn-block btn-group-toggle" data-toggle="buttons">\n' + '                                                <label class="btn btn-success active">\n' + '                                                    <input type="radio" name="recType_1" id="option1" autocomplete="off" checked>Физическое лицо\n' + '                                                </label>\n' + '                                                <label class="btn btn-success">\n' + '                                                    <input type="radio" name="recType_1" id="option2" autocomplete="off">Юридическое лицо\n' + '                                                </label>\n' + '                                            </div>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group">\n' + '                                            <label for="exampleInputEmail1" class="text-secondary">Наименование</label>\n' + '                                            <input type="text" class="form-control" name="recName_1">\n' + '                                            <small id="region" class="form-text text-success">Обязательное поле.</small>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group">\n' + '                                            <label for="exampleInputEmail1" class="text-secondary">БИН</label>\n' + '                                            <input type="text" class="form-control" name="recBIN_1">\n' + '                                            <small id="region" class="form-text text-success">Обязательное поле.</small>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group">\n' + '                                            <label for="consignorCode1" class="text-secondary">Код заказчика</label>\n' + '                                            <input type="text" class="form-control" id="consignorCode1" name="consignorCode1">\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group">\n' + '                                            <label for="country_1" class="text-secondary">Страна</label>\n' + '                                            <select class="form-control" id="country_1" name="country_1">\n' + '                                                <option>Казахстан</option>\n' + '                                                <option>Россия</option>\n' + '                                            </select>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group">\n' + '                                            <label for="province_1" class="text-secondary">Область</label>\n' + '                                            <input type="text" class="form-control" name="province_1" id="province_1">\n' + '                                            <small class="form-text text-success">Обязательное поле.</small>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group">\n' + '                                            <label for="city_1" class="text-secondary">Город</label>\n' + '                                            <select class="form-control" name="city_1" id="city_1">\n' + '                                                <option>Алматы</option>\n' + '                                                <option>Астана</option>\n' + '                                            </select>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group">\n' + '                                            <label for="post_index_1" class="text-secondary">Индекс</label>\n' + '                                            <input type="text" class="form-control" name="post_index_1" id="post_index_1">\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group">\n' + '                                            <label for="street_1" class="text-secondary">Улица</label>\n' + '                                            <input type="text" class="form-control" name="street_1" id="street_1">\n' + '                                            <small id="region" class="form-text text-success">Обязательное поле.</small>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group">\n' + '                                            <label for="houseNumber_1" class="text-secondary">Дом</label>\n' + '                                            <input type="text" class="form-control" name="houseNumber_1" id="houseNumber_1">\n' + '                                            <small id="region" class="form-text text-success">Обязательное поле.</small>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group">\n' + '                                            <label for="officeNumber_1" class="text-secondary">Офис</label>\n' + '                                            <input type="text" class="form-control" name="officeNumber_1" id="officeNumber_1">\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group">\n' + '                                            <label for="contactPerson_1" class="text-secondary">Контактное лицо</label>\n' + '                                            <input type="text" class="form-control" name="contactPerson_1" id="contactPerson_1">\n' + '                                            <small class="form-text text-success">Обязательное поле.</small>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group">\n' + '                                            <label for="contact_phone_1" class="text-secondary">Телефон</label>\n' + '                                            <input type="text" class="form-control" name="contact_phone_1" id="contact_phone_1">\n' + '                                            <small class="form-text text-success">Обязательное поле.</small>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                </div>\n' + '                                <hr>\n' + '                                <h5 class="text-success mt-2 mb-3">Общая информация</h5>\n' + '                                <div class="row">\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group">\n' + '                                            <label for="places_1" class="text-secondary">К отправлению, мест</label>\n' + '                                            <input type="text" class="form-control" name="places_1" id="places_1">\n' + '                                            <small class="form-text text-success">Обязательное поле.</small>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group">\n' + '                                            <label for="weight_1" class="text-secondary">Вес, кг</label>\n' + '                                            <input type="text" class="form-control" name="weight_1" id="weight_1">\n' + '                                            <small class="form-text text-success">Обязательное поле.</small>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group">\n' + '                                            <label for="volume_1" class="text-secondary">Объем, м3</label>\n' + '                                            <input type="text" class="form-control" name="volume_1" id="volume_1">\n' + '                                            <small class="form-text text-success">Обязательное поле.</small>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group">\n' + '                                            <label for="annotation_1" class="text-secondary">Примечание к отправке</label>\n' + '                                            <input type="text" class="form-control" id="annotation_1" name="annotation_1">\n' + '                                        </div>\n' + '                                    </div>\n' + '                                </div>\n' + '                                <hr>\n' + '                                <h5 class="text-success mt-2 mb-3">Тип оплаты</h5>\n' + '                                <div class="row">\n' + '                                    <div class="col-12 col-sm-6">\n' + '                                        <div class="form-group mt-3">\n' + '                                            <div class="btn-group-vertical btn-block btn-group-toggle" data-toggle="buttons">\n' + '                                                <label class="btn btn-success active">\n' + '                                                    <input type="radio" name="consignor_1" id="option1" autocomplete="off" checked>Отправителем\n' + '                                                </label>\n' + '                                                <label class="btn btn-success">\n' + '                                                    <input type="radio" name="consignor_1" id="option2" autocomplete="off">Получателем\n' + '                                                </label>\n' + '                                            </div>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6">\n' + '                                        <div class="form-group">\n' + '                                            <label for="payment_type_1">Способ оплаты</label>\n' + '                                            <select class="form-control" name="payment_type_1" id="payment_type_1">\n' + '                                                <option>Перечислением на счет</option>\n' + '                                                <option>Банковской картой</option>\n' + '                                                <option>Наличными</option>\n' + '                                            </select>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                </div>\n' + '                                <hr>\n' + '                                <h5 class="text-success mt-2 mb-3">Тип доставки</h5>\n' + '                                <div class="row">\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group mt-3">\n' + '                                            <div class="btn-group-vertical btn-block btn-group-toggle text-left" data-toggle="buttons">\n' + '                                                <label class="btn btn-success active text-left">\n' + '                                                    <input type="radio" name="standard_1" id=standard_1" autocomplete="off" checked>Стандарт\n' + '                                                </label>\n' + '                                                <label class="btn btn-success text-left">\n' + '                                                    <input type="radio" name="standard_1" id="standard_1" autocomplete="off">Экспресс\n' + '                                                </label>\n' + '                                                <label class="btn btn-success text-left">\n' + '                                                    <input type="radio" name="standard_1" id="standard_1" autocomplete="off">Ускоренная ЖД\n' + '                                                </label>\n' + '                                            </div>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group">\n' + '                                            <label for="standard_1" class="text-secondary">Наложенный платеж</label>\n' + '                                            <input type="text" class="form-control" name="standard_1" id="standard_1">\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group">\n' + '                                            <label for="standard_1" class="text-secondary">Объявленная стоимость</label>\n' + '                                            <input type="text" class="form-control" name="standard_1" id="standard_1">\n' + '                                        </div>\n' + '                                    </div>\n' + '                                </div>\n' + '                            </div>\n' + '                        </div>');
+    $("#receiver-list").append('<div class="form-receiver mb-3 w-100" id="receiver-">\n' + '                            <button class="btn btn-danger float-right btn-sm receiver-delete">\n' + '                                <i class="fas fa-trash"></i>\n' + '                            </button>\n' + '                            <button class="btn btn-success float-right btn-sm mr-3 receiver-hide reverse">\n' + '                                <i class="fas fa-chevron-down"></i>\n' + '                            </button>\n' + '                            <h5 class="text-success mt-1">Получатель</h5>\n' + '                            <div class="view-block">\n' + '                                <div class="row" id="receiver-0-body">\n' + '                                    <div class="col-12 col-sm-6">\n' + '                                        <div class="form-group">\n' + '                                            <label for="exampleInputEmail1">Шаблон</label>\n' + '                                            <input list="select_1" class="form-control" value="" name="selectTemplate_1" id="selectTemplate_1">\n' + '                                            <datalist id="select_1">\n' + '                                                <option value="ISO-8859-1">ISO-8859-1</option>\n' + '                                                <option value="cp1252">ANSI</option>\n' + '                                                <option value="utf8">UTF-8</option>\n' + '                                            </datalist>\n' + '                                        <div class="custom-control custom-checkbox">\n' + '                                            <input type="checkbox" class="custom-control-input" id="customCheck" name="example1" checked="">\n' + '                                            <label class="custom-control-label" for="customCheck">Сохранить шаблон</label>\n' + '                                        </div>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6">\n' + '                                        <div class="form-group mt-3">\n' + '                                            <div class="btn-group-vertical btn-block btn-group-toggle" data-toggle="buttons">\n' + '                                                <label class="btn btn-success active">\n' + '                                                    <input type="radio" name="recType_1" id="option1" autocomplete="off" checked>Физическое лицо\n' + '                                                </label>\n' + '                                                <label class="btn btn-success">\n' + '                                                    <input type="radio" name="recType_1" id="option2" autocomplete="off">Юридическое лицо\n' + '                                                </label>\n' + '                                            </div>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-3">\n' + '                                        <div class="form-group">\n' + '                                            <label for="exampleInputEmail1" class="text-secondary">Наименование</label>\n' + '                                            <input type="text" class="form-control" name="recName_1">\n' + '                                            <small id="region" class="form-text text-success">Обязательное поле.</small>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-3">\n' + '                                        <div class="form-group">\n' + '                                            <label for="exampleInputEmail1" class="text-secondary">БИН</label>\n' + '                                            <input type="text" class="form-control" name="recBIN_1">\n' + '                                            <small id="region" class="form-text text-success">Обязательное поле.</small>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-3">\n' + '                                        <div class="form-group">\n' + '                                            <label for="consignorCode1" class="text-secondary">Код заказчика</label>\n' + '                                            <input type="text" class="form-control" id="consignorCode1" name="consignorCode1">\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-3">\n' + '                                        <div class="form-group">\n' + '                                            <label for="country_1" class="text-secondary">Страна</label>\n' + '                                            <select class="form-control" id="country_1" name="country_1">\n' + '                                                <option>Казахстан</option>\n' + '                                                <option>Россия</option>\n' + '                                            </select>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-3">\n' + '                                        <div class="form-group">\n' + '                                            <label for="province_1" class="text-secondary">Область</label>\n' + '                                            <input type="text" class="form-control" name="province_1" id="province_1">\n' + '                                            <small class="form-text text-success">Обязательное поле.</small>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-3">\n' + '                                        <div class="form-group">\n' + '                                            <label for="city_1" class="text-secondary">Город</label>\n' + '                                            <select class="form-control" name="city_1" id="city_1">\n' + '                                                <option>Алматы</option>\n' + '                                                <option>Астана</option>\n' + '                                            </select>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-3">\n' + '                                        <div class="form-group">\n' + '                                            <label for="post_index_1" class="text-secondary">Индекс</label>\n' + '                                            <input type="text" class="form-control" name="post_index_1" id="post_index_1">\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-3">\n' + '                                        <div class="form-group">\n' + '                                            <label for="street_1" class="text-secondary">Улица</label>\n' + '                                            <input type="text" class="form-control" name="street_1" id="street_1">\n' + '                                            <small id="region" class="form-text text-success">Обязательное поле.</small>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-3">\n' + '                                        <div class="form-group">\n' + '                                            <label for="houseNumber_1" class="text-secondary">Дом</label>\n' + '                                            <input type="text" class="form-control" name="houseNumber_1" id="houseNumber_1">\n' + '                                            <small id="region" class="form-text text-success">Обязательное поле.</small>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-3">\n' + '                                        <div class="form-group">\n' + '                                            <label for="officeNumber_1" class="text-secondary">Офис</label>\n' + '                                            <input type="text" class="form-control" name="officeNumber_1" id="officeNumber_1">\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-3">\n' + '                                        <div class="form-group">\n' + '                                            <label for="contactPerson_1" class="text-secondary">Контактное лицо</label>\n' + '                                            <input type="text" class="form-control" name="contactPerson_1" id="contactPerson_1">\n' + '                                            <small class="form-text text-success">Обязательное поле.</small>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-3">\n' + '                                        <div class="form-group">\n' + '                                            <label for="contact_phone_1" class="text-secondary">Телефон</label>\n' + '                                            <input type="text" class="form-control" name="contact_phone_1" id="contact_phone_1">\n' + '                                            <small class="form-text text-success">Обязательное поле.</small>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                </div>\n' + '                                <hr>\n' + '                                <h5 class="text-success mt-2 mb-3">Общая информация</h5>\n' + '                                <div class="row">\n' + '                                    <div class="col-12 col-sm-6 col-md-3">\n' + '                                        <div class="form-group">\n' + '                                            <label for="places_1" class="text-secondary">К отправлению, мест</label>\n' + '                                            <input type="text" class="form-control" name="places_1" id="places_1">\n' + '                                            <small class="form-text text-success">Обязательное поле.</small>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-3">\n' + '                                        <div class="form-group">\n' + '                                            <label for="weight_1" class="text-secondary">Вес, кг</label>\n' + '                                            <input type="text" class="form-control" name="weight_1" id="weight_1">\n' + '                                            <small class="form-text text-success">Обязательное поле.</small>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-3">\n' + '                                        <div class="form-group">\n' + '                                            <label for="volume_1" class="text-secondary">Объем, м3</label>\n' + '                                            <input type="text" class="form-control" name="volume_1" id="volume_1">\n' + '                                            <small class="form-text text-success">Обязательное поле.</small>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-3">\n' + '                                        <div class="form-group">\n' + '                                            <label for="annotation_1" class="text-secondary">Примечание к отправке</label>\n' + '                                            <input type="text" class="form-control" id="annotation_1" name="annotation_1">\n' + '                                        </div>\n' + '                                    </div>\n' + '                                </div>\n' + '                                <hr>\n' + '                                <h5 class="text-success mt-2 mb-3">Тип оплаты</h5>\n' + '                                <div class="row">\n' + '                                    <div class="col-12 col-sm-6">\n' + '                                        <div class="form-group mt-3">\n' + '                                            <div class="btn-group-vertical btn-block btn-group-toggle" data-toggle="buttons">\n' + '                                                <label class="btn btn-success active">\n' + '                                                    <input type="radio" name="consignor_1" id="option1" autocomplete="off" checked>Отправителем\n' + '                                                </label>\n' + '                                                <label class="btn btn-success">\n' + '                                                    <input type="radio" name="consignor_1" id="option2" autocomplete="off">Получателем\n' + '                                                </label>\n' + '                                            </div>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6">\n' + '                                        <div class="form-group">\n' + '                                            <label for="payment_type_1">Способ оплаты</label>\n' + '                                            <select class="form-control" name="payment_type_1" id="payment_type_1">\n' + '                                                <option>Перечислением на счет</option>\n' + '                                                <option>Банковской картой</option>\n' + '                                                <option>Наличными</option>\n' + '                                            </select>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                </div>\n' + '                                <hr>\n' + '                                <h5 class="text-success mt-2 mb-3">Тип доставки</h5>\n' + '                                <div class="row">\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group mt-3">\n' + '                                            <div class="btn-group-vertical btn-block btn-group-toggle text-left" data-toggle="buttons">\n' + '                                                <label class="btn btn-success active text-left">\n' + '                                                    <input type="radio" name="standard_1" id=standard_1" autocomplete="off" checked>Стандарт\n' + '                                                </label>\n' + '                                                <label class="btn btn-success text-left">\n' + '                                                     <input type="radio" name="standard_1" id="standard_1" autocomplete="off">Экспресс\n' + '                                                </label>\n' + '                                                <label class="btn btn-success text-left">\n' + '                                                    <input type="radio" name="standard_1" id="standard_1" autocomplete="off">Ускоренная ЖД\n' + '                                                </label>\n' + '                                            </div>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group">\n' + '                                            <label for="standard_1" class="text-secondary">Наложенный платеж</label>\n' + '                                            <input type="text" class="form-control" name="standard_1" id="standard_1">\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-12 col-sm-6 col-md-4">\n' + '                                        <div class="form-group">\n' + '                                            <label for="standard_1" class="text-secondary">Объявленная стоимость</label>\n' + '                                            <input type="text" class="form-control" name="standard_1" id="standard_1">\n' + '                                        </div>\n' + '                                    </div>\n' + '                                </div>\n' + '                            </div>\n' + '                        </div>');
     $(".receiver-hide").bind('click', function (event) {
       event.preventDefault();
       $(this).toggleClass('reverse').closest('.form-receiver ').find('.view-block').fadeToggle(0);
@@ -49591,75 +49632,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/ExampleComponent.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
 
 /***/ }),
 
