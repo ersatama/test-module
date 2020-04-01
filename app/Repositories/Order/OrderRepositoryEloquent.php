@@ -9,8 +9,25 @@ use Carbon\Carbon;
 
 class OrderRepositoryEloquent implements OrderRepositoryInterface
 {
+
+    public function count(int $type, string $search):int {
+        $condition = [['user','=',Auth::id()],['created_at','>',Carbon::now()->subDays(30)]];
+        if (trim($search) !== '') {
+            /*
+             * <option value="0">Номер накладной</option>
+               <option value="1">Номер заказа</option>
+               <option value="2">Статус</option>
+             */
+            $types = [['invoice_number','='],['order_number','='],'id','invoice_status'];
+            $condition[][] = [$types[ $type ],'like','%'.$search.'%'];
+        }
+        return Order::where($condition)->count();
+
+    }
+
     public function all(): array
     {
+
 
         return Order::with('city', 'invoice', 'receiver')->where(
             [

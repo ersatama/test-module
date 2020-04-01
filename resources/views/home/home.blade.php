@@ -9,10 +9,35 @@
                 <div class="container">
                     <h2>Здраствуите, {{join(' ',[Auth::user()->name,Auth::user()->surname,Auth::user()->lastname])}}</h2>
                     <h5>Список ваших заявок за последние 30 дней</h5>
+                    <h6 class="text-bold">Фильтр</h6>
+                    <div class="row">
+                        <div class="col-12 col-md-3">
+                            <div class="form-group">
+                                <select id="inputState" class="form-control">
+                                    <option value="0">Номер накладной</option>
+                                    <option value="1">Номер заказа</option>
+                                    <option value="2">ID</option>
+                                    <option value="3">Статус</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div class="form-group mb-2">
+                                <button type="button" class="btn btn-block btn-primary mb-2">Поиск</button>
+                            </div>
+
+                        </div>
+                    </div>
                     <div class="table-responsive">
                         <table class="table mt-3 table-bordered table-striped">
                             <thead class="thead-dark">
                             <tr>
+                                <th class="text-nowrap">ID</th>
                                 <th class="text-nowrap">Дата создания</th>
                                 <th class="text-nowrap">Номер заказа</th>
                                 <th class="text-nowrap">Номер накладной</th>
@@ -62,7 +87,12 @@
                                     <tr class="text-capitalize">
                                         <th class="text-nowrap">
                                             <div class="text-no-wrap p-1 text-center">
-                                                {{date('j M Y', strtotime($order['created_at']))}}
+                                                {{$order['id']}}
+                                            </div>
+                                        </th>
+                                        <th class="text-nowrap">
+                                            <div class="text-no-wrap p-1 text-center">
+                                                {{date('j-m-Y', strtotime($order['created_at']))}}
                                             </div>
                                         </th>
                                         <td class="text-nowrap">
@@ -84,21 +114,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <nav class="mt-5">
-                        <ul class="pagination">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
+                    @includeWhen(($max!==0), 'home.layouts.pagination', ['page' => $page, 'max' => $max, 'query' => $query])
                 </div>
             </main>
         </div>

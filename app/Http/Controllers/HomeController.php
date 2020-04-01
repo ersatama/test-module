@@ -45,16 +45,33 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
+     * @param Request $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $type = 0;
+        if ($request->query('type')) {
+            $type = $request->query('type');
+        }
+        $search = '';
+        if ($request->query('search')) {
+            $search = $request->query('search');
+        }
 
+        $page = 0;
+
+        $max = 0;
+        $query = '';
         $orders = $this->order->all();
+        $ordersCount = $this->order->count($type, $search);
+
         $invoiceModel = $this->invoice;
         $cityModel = $this->city;
         $deliverModel = $this->deliver;
-        return view('home.home', compact('orders', 'invoiceModel', 'cityModel', 'deliverModel'));
+
+
+        return view('home.home', compact('orders', 'invoiceModel', 'cityModel', 'deliverModel', 'page', 'max', 'query'));
 
     }
 
