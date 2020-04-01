@@ -10,4 +10,9 @@ class city extends Model
     {
         return $this->belongsTo('App\Models\Order\Order');
     }
+
+    public function orderReceiver()
+    {
+        return $this->belongsTo('App\Models\OrderReceiver\OrderReceiver');
+    }
 }

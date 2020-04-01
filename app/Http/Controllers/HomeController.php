@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Repositories\Country\CountryRepositoryEloquent;
 use App\Repositories\City\CityRepositoryEloquent;
 use App\Repositories\Template\TemplateRepositoryEloquent;
 use App\Repositories\ReceiverTemplate\ReceiverTemplateRepositoryEloquent;
 use App\Repositories\Order\OrderRepositoryEloquent;
+use App\Repositories\OrderReceiver\OrderReceiverRepositoryEloquent;
+use App\Repositories\Invoice\InvoiceRepositoryEloquent;
+use App\Repositories\Deliver\DeliverRepositoryEloquent;
 
 class HomeController extends Controller
 {
@@ -21,6 +25,9 @@ class HomeController extends Controller
     protected $template;
     protected $receiverTemplate;
     protected $order;
+    protected $orderReceiver;
+    protected $invoice;
+    protected $deliver;
 
     public function __construct()
     {
@@ -30,6 +37,9 @@ class HomeController extends Controller
         $this->template = new TemplateRepositoryEloquent();
         $this->receiverTemplate = new ReceiverTemplateRepositoryEloquent();
         $this->order = new OrderRepositoryEloquent();
+        $this->orderReceiver = new OrderReceiverRepositoryEloquent();
+        $this->invoice = new InvoiceRepositoryEloquent();
+        $this->deliver = new DeliverRepositoryEloquent();
     }
 
     /**
@@ -39,16 +49,71 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $countries = $this->country->all()->toArray();
-        // $cities = $this->city::all()->toArray();
-        //, compact('countries','cities')
+
         $orders = $this->order->all();
-        return view('home.home', compact('orders'));
+        $invoiceModel = $this->invoice;
+        $cityModel = $this->city;
+        $deliverModel = $this->deliver;
+        return view('home.home', compact('orders', 'invoiceModel', 'cityModel', 'deliverModel'));
+
+    }
+
+    public function user() {
+        return [
+            Auth::id(),
+            Auth::user()->iin,
+            Auth::user()->name
+        ];
     }
 
     public function save(Request $request) {
-        $this->template->save($request->input('template'),$request->input('sender'));
-        return $this->order->save($request->input('sender'));
+
+        $template = $request->input('template');
+        $sender   = $request->input('sender');
+        $receiver = $request->input('receiver');
+
+        $this->template->save(
+            $template,
+            $sender
+        );
+        $this->receiverTemplate->save(
+            $receiver
+        );
+        $orderId = $this->order->save(
+            $sender
+        );
+        $senderCountry = $this->country->getCountryById(
+            $sender['country']
+        );
+        $senderCity = $this->city->getCityById(
+            $sender['city']
+        );
+        $receiversCountryIds = $this->orderReceiver->getCountryIds(
+            $receiver
+        );
+        $receiversCountry = $this->country->getCountriesByIds(
+            $receiversCountryIds
+        );
+        $receiversCityIds = $this->orderReceiver->getCityIds(
+            $receiver
+        );
+        $receiversCity = $this->city->getCitiesByIds(
+            $receiversCityIds
+        );
+        $this->orderReceiver->save(
+            $orderId,
+            $receiver
+        );
+        $this->invoice->send(
+            $orderId,
+            $senderCountry,
+            $senderCity,
+            $receiversCountry,
+            $receiversCity,
+            $sender,
+            $receiver
+        );
+        return $orderId;
 
     }
 
@@ -59,7 +124,7 @@ class HomeController extends Controller
     public function profile() {
         return view('home.profile.profile');
     }
-    
+
     public function countries() {
         return $this->country->all();
     }
@@ -74,6 +139,10 @@ class HomeController extends Controller
 
     public function receiverTemplates() {
         return $this->receiverTemplate->all();
+    }
+
+    public function getReceiverTemplateByName($name) {
+        return $this->receiverTemplate->getTemplateByName($name);
     }
 
     public function getTemplateByName($name) {

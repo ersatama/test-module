@@ -3,7 +3,7 @@
 
 namespace App\Repositories\Template;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Template\template;
 
 class TemplateRepositoryEloquent implements TemplateRepositoryInterface
@@ -19,16 +19,18 @@ class TemplateRepositoryEloquent implements TemplateRepositoryInterface
     {
 
     	if ($template['save']) {
-    		$temp = new template;
-    		$temp->user = Auth::id();
-    		$temp->name = $template['name'];
-    		$temp->data = json_encode($sender);
-    		$temp->status = 1;
-    		$temp->save();
+            $count = template::where('name','=',$template['name'])->count();
+            if ($count === 1) {
+                template::where('name','=',$template['name'])->update(['data' => json_encode($sender), 'status' => 1]);
+            } else {
+                $temp = new template;
+                $temp->user = Auth::id();
+                $temp->name = $template['name'];
+                $temp->data = json_encode($sender);
+                $temp->status = 1;
+                $temp->save();
+            }
     	}
-
-    	// 
-
 
     }
 

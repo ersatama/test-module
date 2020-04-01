@@ -3,20 +3,33 @@
 
 namespace App\Repositories\Order;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Order\Order;
-
+use Carbon\Carbon;
 
 class OrderRepositoryEloquent implements OrderRepositoryInterface
 {
     public function all(): array
     {
 
-        return Order::with('city')->where([['user',Auth::id()]])->orderBy('created_at','desc')->get()->toArray();
+        return Order::with('city', 'invoice', 'receiver')->where(
+            [
+                [
+                    'user',
+                    Auth::id()
+                ]
+            ]
+        )
+            ->whereDate('created_at', '>', Carbon::now()->subDays(30))
+            ->orderBy('created_at','desc')
+            ->get()
+            ->toArray();
 
     }
 
-    public function save(array $data): int {
+    public function save(
+        array $data
+    ): int {
 
     	$order = new Order;
     	$order->user = Auth::id();
@@ -36,8 +49,9 @@ class OrderRepositoryEloquent implements OrderRepositoryInterface
     	return $order->id;
     }
 
-    public function getOrderById(int $id): array
-    {
+    public function getOrderById(
+        int $id
+    ): array {
 
         return Order::select('id','name','data')->where([['name',$name],['status',1]])->get()->toArray();
 

@@ -21,4 +21,13 @@ class CityRepositoryEloquent implements CityRepositoryInterface
 
     }
 
+    public function getCityById(int $id): array
+    {
+        return city::select('id','country_id','name','russian_name','kazakh_name')->where('id',$id)->first()->toArray();
+    }
+
+    public function getCitiesByIds(array $cityIds):array {
+        return city::whereIn('id', $cityIds)->get()->toArray();
+    }
+
 }
