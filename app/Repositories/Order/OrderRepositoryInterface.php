@@ -6,7 +6,7 @@ namespace App\Repositories\Order;
 
 interface OrderRepositoryInterface
 {
-    public function all(): array;
+    public function all(int $page): array;
 
     public function save(array $data): int;
 

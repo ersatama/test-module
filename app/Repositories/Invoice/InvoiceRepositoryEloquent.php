@@ -3,8 +3,11 @@
 
 namespace App\Repositories\Invoice;
 
+use Illuminate\Support\Facades\Auth;
 use Ixudra\Curl\Facades\Curl;
 use App\Models\Invoice\invoice;
+use App\Models\Order\Order;
+use App\Models\OrderReceiver\OrderReceiver;
 
 class InvoiceRepositoryEloquent implements InvoiceRepositoryInterface
 {
@@ -52,14 +55,24 @@ class InvoiceRepositoryEloquent implements InvoiceRepositoryInterface
         int $id,
         array $response
     ):int {
-
-        $invoice = new invoice;
-        $invoice->order = $id;
-        $invoice->data = json_encode($response);
-        $invoice->status = 1;
-        $invoice->save();
-        return $invoice->id;
-
+        $order_number = 0;
+        if (array_key_exists('order_number', $response)) {
+            $order_number = $response['order_number'];
+            foreach($response['shippings'] as &$value) {
+                $invoice = new invoice;
+                $invoice->order = $id;
+                $invoice->order_number = $order_number;
+                $invoice->invoice_number = $value['invoice_number'];
+                $invoice->invoice_status = $this->getStatusByInvoice($value['invoice_number'], Auth::user()->iin);
+                $invoice->status = 1;
+                $invoice->save();
+            }
+        } else {
+            $order = Order::find($id);
+            $order->delete();
+            OrderReceiver::where('order','=',$id)->delete();
+        }
+        return $order_number;
     }
 
     public function convert(

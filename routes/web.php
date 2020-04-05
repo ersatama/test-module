@@ -49,13 +49,16 @@ Route::get('/contacts', function () {
 Route::get('/about', function () {
     return view('about.about');
 });
-
+Route::get('/test', 'TestController@test');
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/user','HomeController@user');
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home/{id}', 'SearchController@ticket')->name('ticket');
+    Route::get('/search', 'SearchController@search')->name('search');
     Route::get('/instruction', 'HomeController@instruction')->name('instruction');
+
     Route::get('/order', 'HomeController@order')->name('orders');
     Route::post('/order/save', 'HomeController@save');
     Route::get('/order/city_list/{id}','HomeController@getCities');

@@ -1,8 +1,6 @@
 require('./bootstrap');
 
 import 'vue-toast-notification/dist/theme-sugar.css';
-
-
 import VueToast from 'vue-toast-notification';
 import VueTheMask from 'vue-the-mask';
 import VueRouter from 'vue-router';
@@ -13,12 +11,28 @@ window.Vue.use(VueTheMask);
 window.Vue.use(VueRouter);
 
 import order from './components/orders/OrdersComponent.vue';
+import home from './components/home/HomeComponent.vue';
 
 const routes = [
     {
         path: '/order',
         name: 'order',
         component: order
+    },
+    {
+        path: '/home',
+        name: 'home',
+        component: home
+    },
+    {
+        path: '/home/:id',
+        name: 'search',
+        component: home
+    },
+    {
+        path: '/search',
+        name: 'search',
+        component: home
     }
 ];
 const router = new VueRouter({ mode: 'history', routes: routes});

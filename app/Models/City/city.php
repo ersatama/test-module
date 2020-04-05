@@ -8,11 +8,11 @@ class city extends Model
 {
 	public function order()
     {
-        return $this->belongsTo('App\Models\Order\Order');
+        return $this->belongsTo('App\Models\Order\Order', 'city','id');
     }
 
     public function orderReceiver()
     {
-        return $this->belongsTo('App\Models\OrderReceiver\OrderReceiver');
+        return $this->belongsTo('App\Models\OrderReceiver\OrderReceiver','city','id');
     }
 }

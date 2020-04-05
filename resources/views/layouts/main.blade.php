@@ -156,7 +156,7 @@
                         @if(Auth::check())
                             <a href="/logout">
                                 <div class="social-network-icon">
-                                    <i class="fas fa-sign-in-alt"></i>
+                                    <i class="fas fa-sign-out-alt"></i>
                                 </div>
                             </a>
                         @else

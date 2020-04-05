@@ -196,7 +196,7 @@
                                 <div class="col-12 col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label class="text-secondary">Город</label>
-                                        <select class="form-control text-capitalize" @change="changeCityReceiver(index)" v-model="receiver[index].city">
+                                        <select class="form-control text-capitalize" v-model="receiver[index].city">
                                             <option v-for="receiverCity in receiver[index].cities" :value="receiverCity.id">{{receiverCity.russian_name}}</option>
                                         </select>
                                     </div>
@@ -490,9 +490,8 @@
                         this.sender = Object.assign({}, this.senderTemplate)
                 ));
             },
-
             receiverTypeChange(id) {
-                if (this.receiver[id].type == 0) {
+                if (this.receiver[id].type === 0) {
                     this.receiver[id].status = false;
                 } else {
                     this.receiver[id].status = true;
@@ -526,7 +525,7 @@
 
                         if (value.name.trim() === '') {
                             return $("#name-"+index).focus();
-                        } else if (value.iin.trim() === '') {
+                        } else if (value.type == 1 && value.iin.trim() === '') {
                             return $("#iin-"+index).focus();
                         } else if (value.region.trim() === '') {
                             return $("#region-"+index).focus();
@@ -572,7 +571,12 @@
 
                 }).catch(function (error) {
 
-                    console.log(error);
+                    return Vue.$toast.open({
+                        message: error.response.data.error,
+                        type: 'error',
+                        position: 'top-left',
+                        duration: 5000,
+                    });
 
                 });
 
@@ -611,6 +615,7 @@
             },
 
             changeCityReceiver(id) {
+
                 axios.get('order/city_list/'+this.receiver[id].country).then(response => (this.receiver[id].cities = response.data,  this.receiver[id].city = this.receiver[id].cities[0].id));
             },
             show(a) {

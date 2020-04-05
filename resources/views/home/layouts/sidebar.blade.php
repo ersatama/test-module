@@ -8,7 +8,7 @@
                 <a class="nav-link text-nowrap pl-0 @if(Request::is('profile')) text-primary  @else text-dark @endif" href="/profile"><i class="fas fa-user"></i> <span class="d-none d-md-inline font-weight-bold ml-2">Мой профиль</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-nowrap pl-0 @if(Request::is('tracking')) text-primary  @else text-dark @endif" href="/tracking"><i class="fas fa-map-marker-alt"></i> <span class="d-none d-md-inline font-weight-bold ml-2">Отслеживание</span></a>
+                <a class="nav-link text-nowrap pl-0 @if(Request::is('search')) text-primary  @else text-dark @endif" href="/search"><i class="fas fa-map-marker-alt"></i> <span class="d-none d-md-inline font-weight-bold ml-2">Отслеживание</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-nowrap pl-0 @if(Request::is('order')) text-primary  @else text-dark @endif" href="/order"><i class="fas fa-plus-circle"></i> <span class="d-none d-md-inline font-weight-bold ml-2">Добавить заказ</span></a>

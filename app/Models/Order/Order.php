@@ -3,7 +3,6 @@
 namespace App\Models\Order;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
 class Order extends Model
 {
@@ -14,7 +13,7 @@ class Order extends Model
 
     public function invoice()
     {
-        return $this->hasOne('App\Models\Invoice\invoice','order','id');
+        return $this->hasMany('App\Models\Invoice\invoice','order','id');
     }
 
     public function receiver()

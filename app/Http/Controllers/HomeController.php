@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Repositories\Country\CountryRepositoryEloquent;
@@ -50,28 +51,17 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $type = 0;
-        if ($request->query('type')) {
-            $type = $request->query('type');
-        }
-        $search = '';
-        if ($request->query('search')) {
-            $search = $request->query('search');
+        $page = 1;
+        if ($request->query('page')) {
+            $page = preg_replace('/[^0-9]/', '', $request->query('page'));
+            if (trim($page) == '') $page = 1;
         }
 
-        $page = 0;
-
-        $max = 0;
-        $query = '';
-        $orders = $this->order->all();
-        $ordersCount = $this->order->count($type, $search);
-
-        $invoiceModel = $this->invoice;
+        $max = $this->order->count();
+        $orders = $this->order->all($page);
         $cityModel = $this->city;
         $deliverModel = $this->deliver;
-
-
-        return view('home.home', compact('orders', 'invoiceModel', 'cityModel', 'deliverModel', 'page', 'max', 'query'));
+        return view('home.home', compact('orders', 'cityModel', 'deliverModel', 'page', 'max'));
 
     }
 
@@ -121,7 +111,7 @@ class HomeController extends Controller
             $orderId,
             $receiver
         );
-        $this->invoice->send(
+        $order_number = $this->invoice->send(
             $orderId,
             $senderCountry,
             $senderCity,
@@ -130,6 +120,9 @@ class HomeController extends Controller
             $sender,
             $receiver
         );
+        if ($order_number === 0) {
+            return response()->json(['error' => 'Не найдено Направление по данному запросу'], 404);
+        }
         return $orderId;
 
     }
