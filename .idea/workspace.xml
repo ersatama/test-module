@@ -2,34 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93f514e2-3dbb-41e9-afb0-b5d8f8cad35a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Providers/SHAHasher.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/home/HomeComponent.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/home/layouts/table.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/home/order/ticket.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/home/search.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/City/city.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/City/city.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Deliver/deliver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Deliver/deliver.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Order/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Order/Order.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/OrderReceiver/OrderReceiver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/OrderReceiver/OrderReceiver.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/Invoice/InvoiceRepositoryEloquent.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Invoice/InvoiceRepositoryEloquent.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/Order/OrderRepositoryEloquent.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Order/OrderRepositoryEloquent.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/Order/OrderRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Order/OrderRepositoryInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_03_084444_create_orders_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_03_084444_create_orders_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_31_182810_create_invoices_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_31_182810_create_invoices_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/orders/OrdersComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/orders/OrdersComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home/layouts/pagination.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home/layouts/pagination.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home/layouts/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home/profile/profile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home/profile/profile.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +160,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components/home" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
@@ -228,7 +208,8 @@
       <workItem from="1585465593625" duration="607000" />
       <workItem from="1585466853145" duration="635000" />
       <workItem from="1585477008157" duration="38000" />
-      <workItem from="1585477498013" duration="159510000" />
+      <workItem from="1585477498013" duration="167040000" />
+      <workItem from="1586234433944" duration="11325000" />
     </task>
     <servers />
   </component>
@@ -252,10 +233,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="254" height="195" key="DatabaseViewActions_Filter/0.0.1536.824@0.0.1536.824" timestamp="1585746905760" />
-    <state x="620" y="174" key="FileChooserDialogImpl" timestamp="1586016648826">
+    <state x="620" y="174" key="FileChooserDialogImpl" timestamp="1586207000794">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="620" y="174" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586016648826" />
+    <state x="620" y="174" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586207000794" />
     <state width="1342" height="180" key="GridCell.Tab.0.bottom" timestamp="1582172217079">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -8,7 +8,7 @@ class Order extends Model
 {
     public function city()
     {
-        return $this->hasOne('App\Models\City\City','id','city');
+        return $this->hasOne('App\Models\City\city','id','city');
     }
 
     public function invoice()

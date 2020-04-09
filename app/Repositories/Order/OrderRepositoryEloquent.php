@@ -13,10 +13,12 @@ class OrderRepositoryEloquent implements OrderRepositoryInterface
     protected $take = 30;
 
     public function search(int $type, string $query): array {
+
         $arr = [];
         if ($type === 0) {
             $invoice = invoice::where([['invoice_number','=',$query],['status','=',1]])->first();
             if ($invoice) {
+                $this->updateStatus();
                 $invoice = $invoice->toArray();
                 $arr = Order::with('city', 'invoice', 'receiver')
                     ->where([['user','=',Auth::id()],['id','=',$invoice['order']]])
@@ -37,6 +39,7 @@ class OrderRepositoryEloquent implements OrderRepositoryInterface
         }
         return $arr;
     }
+
     public function count():int {
         $limit = 0;
         $count = Order::where([['user','=',Auth::id()],['created_at','>',Carbon::now()->subDays(30)]])->count();

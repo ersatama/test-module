@@ -58,7 +58,9 @@ const app = new Vue({ router }).$mount('#app');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-
+$(document).ready(function() {
+    AOS.init();
+});
 /*$(document).ready(function() {
 
 var token = $("meta[name='csrf-token']").attr("content");

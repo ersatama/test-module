@@ -1,8 +1,8 @@
 <?php
 
-
 namespace App\Repositories\Invoice;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Ixudra\Curl\Facades\Curl;
 use App\Models\Invoice\invoice;
@@ -16,8 +16,20 @@ class InvoiceRepositoryEloquent implements InvoiceRepositoryInterface
     protected $status = '/integrationsite/invoicestatus';
     protected $server = 'http://91.215.136.138/spark/hs';
 
+    public function updateStatus(string $invoice, string $status ):string {
+        $out = '';
+        $invoiceArr = invoice::where('invoice_number',$invoice)->get()->toArray();
+        if (sizeof($invoiceArr)>0) {
+            invoice::where('invoice_number','=',$invoice)->update(['invoice_status'=>$status]);
+            $out = 'Status successfully updated.';
+        } else {
+            $out = 'Invoice '.$invoice.' doesn\'t exist/';
+        }
+        return $out;
+    }
+
     public function getStatusByInvoice(string $invoice, int $iin):string {
-        return 'Присвоен Номер Заказа';
+//        return 'Присвоен Номер Заказа';
         $response = Curl::to(join('',[
             $this->server,
             $this->status,
