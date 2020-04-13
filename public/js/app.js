@@ -2322,19 +2322,18 @@ __webpack_require__.r(__webpack_exports__);
     return {
       money: {
         decimal: ',',
-        thousands: '.',
-        prefix: '',
+        thousands: '',
         suffix: ' ₸',
         precision: 1,
-        masked: false
+        masked: true
         /* doesn't work with directive */
 
       },
       weight: {
         decimal: ',',
-        thousands: '.',
+        thousands: '',
         precision: 1,
-        masked: false
+        masked: true
         /* doesn't work with directive */
 
       },
@@ -2342,7 +2341,7 @@ __webpack_require__.r(__webpack_exports__);
         decimal: ',',
         thousands: '.',
         precision: 1,
-        masked: false
+        masked: true
         /* doesn't work with directive */
 
       },
@@ -2353,7 +2352,7 @@ __webpack_require__.r(__webpack_exports__);
       cities: [],
       countries: [],
       template: '',
-      save: true,
+      save: false,
       senderTemplate: {
         name: '',
         iin: '',
@@ -2537,9 +2536,9 @@ __webpack_require__.r(__webpack_exports__);
             return $("#contact-person-phone-" + index).focus();
           } else if (value.info.place.trim() === '') {
             return $("#contact-info-place-" + index).focus();
-          } else if (value.info.weight.trim() === '') {
+          } else if (value.info.weight.trim() === '0,0') {
             return $("#contact-info-weight-" + index).focus();
-          } else if (value.info.volume.trim() === '') {
+          } else if (value.info.volume.trim() === '0,0') {
             return $("#contact-info-volume-" + index).focus();
           }
 
@@ -40986,7 +40985,7 @@ var render = function() {
                                   attrs: {
                                     type: "text",
                                     id: "contact-info-weight-" + index,
-                                    placeholder: "0,000",
+                                    placeholder: "0,0",
                                     autocomplete: "none"
                                   },
                                   domProps: {
@@ -41043,7 +41042,7 @@ var render = function() {
                                   attrs: {
                                     type: "text",
                                     id: "contact-info-volume-" + index,
-                                    placeholder: "0,000",
+                                    placeholder: "0,0",
                                     autocomplete: "none"
                                   },
                                   domProps: {

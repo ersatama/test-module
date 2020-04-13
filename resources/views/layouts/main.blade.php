@@ -35,6 +35,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
+                <!--
                 <li class="nav-item active navbar-menu-item">
                     <a class="nav-link" href="/services">Услуги</a>
                 </li>
@@ -59,6 +60,7 @@
                 <li class="nav-item navbar-menu-item">
                     <a class="nav-link" href="/contacts">Контакты</a>
                 </li>
+                -->
                 <li class="nav-item navbar-menu-item-info">
                     <div class="nav-menu-item">
                         <div class="nav-menu-item-icon nav-menu-item-content">
@@ -172,7 +174,8 @@
         </div>
     </div>
 </nav>
-<nav class="navbar navbar-expand-lg navbar-light menu-footer d-none d-lg-block">
+    <hr class="m-0">
+<nav class="navbar navbar-expand-lg navbar-light menu-footer d-none d-lg-block" style="display: none !important;">
     <div class="container">
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto text-light w-100 menu-ul">

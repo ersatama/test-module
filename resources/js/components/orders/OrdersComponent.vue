@@ -256,14 +256,14 @@
                                 <div class="col-12 col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label class="text-secondary">Вес, кг</label>
-                                        <input type="text" class="form-control" :id="'contact-info-weight-'+index" v-model="receiver[index].info.weight" v-money="weight" placeholder="0,000" autocomplete="none">
+                                        <input type="text" class="form-control" :id="'contact-info-weight-'+index" v-model="receiver[index].info.weight" v-money="weight" placeholder="0,0" autocomplete="none">
                                         <small class="form-text text-success">Обязательное поле.</small>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label class="text-secondary">Объем, м3</label>
-                                        <input type="text" class="form-control" :id="'contact-info-volume-'+index" v-model="receiver[index].info.volume" v-money="volume" placeholder="0,000" autocomplete="none">
+                                        <input type="text" class="form-control" :id="'contact-info-volume-'+index" v-model="receiver[index].info.volume" v-money="volume" placeholder="0,0" autocomplete="none">
                                         <small class="form-text text-success">Обязательное поле.</small>
                                     </div>
                                 </div>
@@ -369,23 +369,22 @@
             return {
                 money: {
                     decimal: ',',
-                    thousands: '.',
-                    prefix: '',
+                    thousands: '',
                     suffix: ' ₸',
                     precision: 1,
-                    masked: false /* doesn't work with directive */
+                    masked: true /* doesn't work with directive */
                 },
                 weight: {
                     decimal: ',',
-                    thousands: '.',
+                    thousands: '',
                     precision: 1,
-                    masked: false /* doesn't work with directive */
+                    masked: true /* doesn't work with directive */
                 },
                 volume: {
                     decimal: ',',
                     thousands: '.',
                     precision: 1,
-                    masked: false /* doesn't work with directive */
+                    masked: true /* doesn't work with directive */
                 },
                 current: this.currentDate(),
                 status: false,
@@ -394,7 +393,7 @@
                 cities: [],
                 countries: [],
                 template: '',
-                save: true,
+                save: false,
                 senderTemplate: {
                     name: '',
                     iin: '',
@@ -563,9 +562,9 @@
                             return $("#contact-person-phone-"+index).focus();
                         } else if (value.info.place.trim() === '') {
                             return $("#contact-info-place-"+index).focus();
-                        } else if (value.info.weight.trim() === '') {
+                        } else if (value.info.weight.trim() === '0,0') {
                             return $("#contact-info-weight-"+index).focus();
-                        } else if (value.info.volume.trim() === '') {
+                        } else if (value.info.volume.trim() === '0,0') {
                             return $("#contact-info-volume-"+index).focus();
                         }
                         if (value.template.trim() === '') {

@@ -131,7 +131,7 @@ class InvoiceRepositoryEloquent implements InvoiceRepositoryInterface
             'contact_person' => $sender['person']['name'],
             'contact_phone'  => $sender['person']['phone'],
             'take_date'      => date('Y-m-d', strtotime($sender['person']['take_date'])),
-            'take_time'      => $sender['person']['take_time'][ $sender['person']['take_time'] ],
+            'take_time'      => $sender['person']['take_time_list'][ $sender['person']['take_time'] ],
             'post_index'     => $sender['index'],
         ];
     }
