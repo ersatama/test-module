@@ -3,7 +3,7 @@
         <div class="container mb-5">
             <div class="row">
                 <div class="col-12">
-                    <div class="p-3 mt-3 mb-2 bg-success text-white text-center">Ваш заказ успешно принят в обработку, с вами скоро свяжутся!<br>номер вашего заказа <span class="text-dark font-weight-bold">№{{order}}</span></div>
+                    <div class="p-3 mt-3 mb-2 bg-success text-white text-center">Ваш заказ успешно принят в обработку, с вами скоро свяжутся!<br>номер вашего заказа <a :href="'/home/'+orderId"><span class="text-dark font-weight-bold">№{{order}}</span></a></div>
                 </div>
                 <div class="col text-center mt-3">
                     <button type="button" class="btn btn-primary px-5" @click="refreshOrder()">Добавить новый заказ</button>
@@ -27,8 +27,8 @@
                             </datalist>
                         </div>
                         <div class="custom-control custom-checkbox mb-3">
-                            <input type="checkbox" class="custom-control-input" v-model="save">
-                            <label class="custom-control-label">Сохранить шаблон</label>
+                            <input type="checkbox" class="custom-control-input" v-model="save" id="customCheck">
+                            <label class="custom-control-label" for="customCheck">Сохранить шаблон</label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 col-md-3">
@@ -88,7 +88,7 @@
                     </div>
                     <div class="col-12 col-sm-6 col-md-3">
                         <div class="form-group">
-                            <label>Офис</label>
+                            <label>Офис\Квартира</label>
                             <input type="text" class="form-control bg-light" v-model="sender.office">
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                     <div class="col-12 col-sm-6 col-md-3">
                         <div class="form-group">
                             <label>Телефон</label>
-                            <input type="text" class="form-control bg-light" v-model="sender.person.phone" id="sender_person_phone">
+                            <input type="tel" class="form-control bg-light" v-model="sender.person.phone" id="sender_person_phone" v-mask="'+7(###) ###-##-##'" placeholder="+7(___) ___-__-__">
                             <small class="form-text text-success">Обязательное поле.</small>
                         </div>
                     </div>
@@ -116,8 +116,9 @@
                     <div class="col-12 col-sm-6 col-md-3">
                         <div class="form-group">
                             <label>Время забора</label>
-                            <input type="text" class="form-control bg-light" v-model="sender.person.take_time" id="sender_person_take_time">
-                            <small class="form-text text-success">Обязательное поле.</small>
+                            <select class="form-control bg-light" v-model="sender.person.take_time" id="sender_person_take_time">
+                                <option v-for="(take_time_template, index) in senderTemplate.person.take_time_list" :value="index">{{take_time_template}}</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -137,8 +138,8 @@
                                             <option v-for="temp in templateList" :value="temp.name">{{temp.name}}</option>
                                         </datalist>
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck" name="example1" checked="" v-model="receiver[index].saveTemplate">
-                                            <label class="custom-control-label" for="customCheck">Сохранить шаблон</label>
+                                            <input type="checkbox" class="custom-control-input" :id="'customCheck-'+index" checked="" v-model="receiver[index].saveTemplate">
+                                            <label class="custom-control-label" :for="'customCheck-'+index">Сохранить шаблон</label>
                                         </div>
                                     </div>
                                 </div>
@@ -161,15 +162,15 @@
                                 <div class="col-12 col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label class="text-secondary">Наименование</label>
-                                        <input type="text" class="form-control" :id="'name-'+index" v-model="receiver[index].name">
-                                        <small class="form-text text-success">Обязательное поле.</small>
+                                        <input type="text" class="form-control" :id="'name-'+index" v-model="receiver[index].name" :readonly="!receiver[index].status">
+                                        <small class="form-text text-success" v-if="receiver[index].status">Обязательное поле.</small>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label class="text-secondary">БИН</label>
                                         <input type="text" class="form-control" :id="'iin-'+index" v-model="receiver[index].iin" :readonly="!receiver[index].status">
-                                        <small id="region" class="form-text text-success">Обязательное поле.</small>
+                                        <small class="form-text text-success" v-if="receiver[index].status">Обязательное поле.</small>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-3">
@@ -223,7 +224,7 @@
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-3">
                                     <div class="form-group">
-                                        <label class="text-secondary">Офис</label>
+                                        <label class="text-secondary">Офис\Квартира</label>
                                         <input type="text" class="form-control" v-model="receiver[index].office">
                                     </div>
                                 </div>
@@ -237,7 +238,7 @@
                                 <div class="col-12 col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label class="text-secondary">Телефон</label>
-                                        <input type="text" class="form-control" :id="'contact-person-phone-'+index" v-model="receiver[index].contactPerson.phone">
+                                        <input type="text" class="form-control" :id="'contact-person-phone-'+index" v-model="receiver[index].contactPerson.phone" v-mask="'+7(###) ###-##-##'" placeholder="+7(___) ___-__-__">
                                         <small class="form-text text-success">Обязательное поле.</small>
                                     </div>
                                 </div>
@@ -255,14 +256,14 @@
                                 <div class="col-12 col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label class="text-secondary">Вес, кг</label>
-                                        <input type="text" class="form-control" :id="'contact-info-weight-'+index" v-model="receiver[index].info.weight">
+                                        <input type="text" class="form-control" :id="'contact-info-weight-'+index" v-model="receiver[index].info.weight" v-money="weight" placeholder="0,000" autocomplete="none">
                                         <small class="form-text text-success">Обязательное поле.</small>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label class="text-secondary">Объем, м3</label>
-                                        <input type="text" class="form-control" :id="'contact-info-volume-'+index" v-model="receiver[index].info.volume">
+                                        <input type="text" class="form-control" :id="'contact-info-volume-'+index" v-model="receiver[index].info.volume" v-money="volume" placeholder="0,000" autocomplete="none">
                                         <small class="form-text text-success">Обязательное поле.</small>
                                     </div>
                                 </div>
@@ -336,7 +337,7 @@
                                 <div class="col-12 col-sm-6 col-md-4">
                                     <div class="form-group">
                                         <label class="text-secondary">Объявленная стоимость</label>
-                                        <input type="text" class="form-control" v-model="receiver[index].deliver.price">
+                                        <input type="text" class="form-control" v-model="receiver[index].deliver.price" v-money="money">
                                     </div>
                                 </div>
                             </div>
@@ -345,12 +346,12 @@
                 </div>
                 <div class="row justify-content-sm-center mb-3">
                     <div class="col-12 col-sm-5">
-                        <button type="submit" class="btn btn-primary btn-block mt-3 new-receiver" @click="newReceiver">Добавить получателя</button>
+                        <button type="button" class="btn btn-primary btn-block mt-3 new-receiver" @click="newReceiver">Добавить получателя</button>
                     </div>
                 </div>
                 <div class="row justify-content-sm-center">
                     <div class="col-12 col-sm-5">
-                        <button type="submit" class="btn btn-success btn-block" @click="readyOrder">Добавить заказ</button>
+                        <button type="button" class="btn btn-success btn-block" @click="readyOrder">Добавить заказ</button>
                     </div>
                 </div>
             </form>
@@ -362,11 +363,33 @@
     </div>
 </template>
 <script>
+
     export default {
         data() {
             return {
+                money: {
+                    decimal: ',',
+                    thousands: '.',
+                    prefix: '',
+                    suffix: ' ₸',
+                    precision: 1,
+                    masked: false /* doesn't work with directive */
+                },
+                weight: {
+                    decimal: ',',
+                    thousands: '.',
+                    precision: 1,
+                    masked: false /* doesn't work with directive */
+                },
+                volume: {
+                    decimal: ',',
+                    thousands: '.',
+                    precision: 1,
+                    masked: false /* doesn't work with directive */
+                },
                 current: this.currentDate(),
                 status: false,
+                orderId: 0,
                 order: 0,
                 cities: [],
                 countries: [],
@@ -386,7 +409,8 @@
                         name: '',
                         phone: '',
                         take_date: '',
-                        take_time: '',
+                        take_time: 0,
+                        take_time_list: ['До обеда','После обеда'],
                     },
                 },
                 sender: {
@@ -438,7 +462,7 @@
                     },
                     payment: {
                         personType: 0,
-                        typeList: ['Перечислением на счет','Банковской картой','Наличными'],
+                        typeList: ['Перечислением на счет','Наличными'],
                         type: 0,
                     },
                     deliver: {
@@ -453,7 +477,6 @@
             }
         },
         mounted() {
-
 
         },
         created() {
@@ -491,7 +514,7 @@
                 ));
             },
             receiverTypeChange(id) {
-                if (this.receiver[id].type === 0) {
+                if (this.receiver[id].type == 0) {
                     this.receiver[id].status = false;
                 } else {
                     this.receiver[id].status = true;
@@ -510,8 +533,6 @@
                     return $("#sender_person_phone").focus();
                 } else if (this.sender.person.take_date.trim() === '') {
                     return $("#sender_person_take_date").focus();
-                } else if (this.sender.person.take_time.trim() === '') {
-                    return $("#sender_person_take_time").focus();
                 }
                 if (this.receiver.length === 0) {
                     return Vue.$toast.open({
@@ -521,9 +542,12 @@
                         duration: 5000,
                     });
                 } else {
-                    this.receiver.forEach(function callback(value, index) {
-
-                        if (value.name.trim() === '') {
+                    for (let index = 0, length = this.receiver.length; index < length ; index++) {
+                        let value = this.receiver[ index ];
+                        if (value.type == 0 && value.name.trim() === '') {
+                            value.name = '-';
+                        }
+                        if (value.type == 1 && value.name.trim() === '') {
                             return $("#name-"+index).focus();
                         } else if (value.type == 1 && value.iin.trim() === '') {
                             return $("#iin-"+index).focus();
@@ -531,6 +555,8 @@
                             return $("#region-"+index).focus();
                         } else if (value.street.trim() === '') {
                             return $("#street-"+index).focus();
+                        } else if (value.house.trim() === '') {
+                            return $("#house-"+index).focus();
                         } else if (value.contactPerson.name.trim() === '') {
                             return $("#contact-person-name-"+index).focus();
                         } else if (value.contactPerson.phone.trim() === '') {
@@ -545,8 +571,7 @@
                         if (value.template.trim() === '') {
                             value.template = $("#template-"+index).data('value');
                         }
-
-                    });
+                    }
                 }
 
 
@@ -565,8 +590,8 @@
 
                 }).then(function (response) {
 
-                    self.order = response.data;
-
+                    self.order = response.data[0];
+                    self.orderId = response.data[1];
                     self.status = true;
 
                 }).catch(function (error) {

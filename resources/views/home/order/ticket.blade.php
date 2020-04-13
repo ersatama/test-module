@@ -133,12 +133,12 @@
                                 <div class="col-4 col-md-3">Тип получателя</div>
                                 <div class="col-auto font-weight-bold">{{$receiver['type']}}</div>
                             </div>
-                            <hr class="bg-light">
-                            <div class="row">
-                                <div class="col-4 col-md-3">Ф.И.О</div>
-                                <div class="col-auto font-weight-bold">{{$receiver['name']}}</div>
-                            </div>
-                            @if($receiver['type'] === 1)
+                            @if($receiver['type'] == 0)
+                                <hr class="bg-light">
+                                <div class="row">
+                                    <div class="col-4 col-md-3">Ф.И.О</div>
+                                    <div class="col-auto font-weight-bold">{{$receiver['name']}}</div>
+                                </div>
                                 <hr class="bg-light">
                                 <div class="row">
                                     <div class="col-4 col-md-3">БИН</div>

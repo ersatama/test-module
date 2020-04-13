@@ -16,7 +16,7 @@ class ReceiverTemplateRepositoryEloquent implements ReceiverTemplateRepositoryIn
         foreach($receiver as &$value) {
             if ($value['saveTemplate']) {
                 $count = ReceiverTemplate::where('name','=',$value['template'])->count();
-                if ($count == 1) {
+                if ($count === 1) {
                     ReceiverTemplate::where('name','=',$value['template'])->update(['data' => json_encode($value),'status' => 1]);
                 } else {
                     $receiver = new ReceiverTemplate;

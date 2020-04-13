@@ -33,7 +33,7 @@ class OrderReceiver extends Model
         if ($value === 0) {
             return 'Перечислением на счет';
         } elseif ($value === 1) {
-            return 'Банковской картой';
+            return 'Наличными';
         } else {
             return 'Наличными';
         }

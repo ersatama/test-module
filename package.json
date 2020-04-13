@@ -26,9 +26,13 @@
     },
     "dependencies": {
         "babel-core": "^6.26.3",
+        "inputmask": "^5.0.3",
         "json": "^9.0.6",
         "mongoose": "^5.9.4",
         "socket.io": "^2.3.0",
+        "v-mask": "^2.1.0",
+        "v-money": "^0.8.1",
+        "vue-masked-input": "^0.5.2",
         "vue-the-mask": "^0.11.1",
         "vue-toast-notification": "^0.2.0",
         "xml": "^1.0.1"

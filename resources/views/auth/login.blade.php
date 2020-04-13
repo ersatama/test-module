@@ -45,24 +45,19 @@
                                             <i class="fas fa-key"></i>
                                             <input id="password" type="password" class="form-data-input login-input" name="password" required autocomplete="current-password" placeholder="{{ __('Password') }}">
                                         </div>
-                                        @error('password')
-                                        <span class="invalid-feedback form-data-error" role="alert">
-                                        <strong>Не правильный номер телефона или пароль.</strong>
-                                    </span>
-                                        @enderror
-                                        @error('phone')
-                                        <span class="invalid-feedback form-data-error" role="alert">
-                                        <strong>Не правильный номер телефона или пароль.</strong>
-                                    </span>
-                                        @enderror
                                     </div>
-                                    <div class="form-group">
+                                    <!--<div class="form-group">
                                         <a class="login-link"  href="{{ route('password.request') }}">Забыли пароль?</a>
-                                    </div>
+                                    </div>-->
                                     <div class="form-group">
                                         <button type="submit" class="btn-primary login-button">Войти в кабинет</button>
                                     </div>
-                                    <div class="alert alert-danger error-form-message d-none">Не правильный логин или пароль.</div>
+                                    @error('password')
+                                    <div class="alert alert-danger error-form-message">Не правильный логин или пароль.</div>
+                                    @enderror
+                                    @error('iin')
+                                    <div class="alert alert-danger error-form-message">Не правильный логин или пароль.</div>
+                                    @enderror
                                 </form>
                             </div>
                         </div>

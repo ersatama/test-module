@@ -2,13 +2,15 @@ require('./bootstrap');
 
 import 'vue-toast-notification/dist/theme-sugar.css';
 import VueToast from 'vue-toast-notification';
-import VueTheMask from 'vue-the-mask';
+import VueMask from 'v-mask';
 import VueRouter from 'vue-router';
+import Money from 'v-money';
 
 window.Vue = require('vue');
 window.Vue.use(VueToast);
-window.Vue.use(VueTheMask);
+window.Vue.use(VueMask);
 window.Vue.use(VueRouter);
+window.Vue.use(Money, {precision: 4});
 
 import order from './components/orders/OrdersComponent.vue';
 import home from './components/home/HomeComponent.vue';
@@ -16,22 +18,18 @@ import home from './components/home/HomeComponent.vue';
 const routes = [
     {
         path: '/order',
-        name: 'order',
         component: order
     },
     {
         path: '/home',
-        name: 'home',
         component: home
     },
     {
         path: '/home/:id',
-        name: 'search',
         component: home
     },
     {
         path: '/search',
-        name: 'search',
         component: home
     }
 ];
@@ -61,47 +59,3 @@ const app = new Vue({ router }).$mount('#app');
 $(document).ready(function() {
     AOS.init();
 });
-/*$(document).ready(function() {
-
-var token = $("meta[name='csrf-token']").attr("content");
-
-    AOS.init();
-
-    $(".receiver-hide").bind('click', function(event) {
-        event.preventDefault();
-
-        $(this).toggleClass('reverse').closest('.form-receiver ').find('.view-block').fadeToggle(0);
-
-    });
-
-    $(".receiver-delete").bind('click', function(event) {
-        event.preventDefault();
-
-        $(this).closest('.form-receiver').remove();
-
-    });
-
-    $(".new-receiver").bind('blur',function(event) {
-    	return;
-    	event.preventDefault();
-    	event.stopPropagation();
-    	var count = 1;
-    	count++;
-        var count = $(".form-receiver").length;
-
-        $(".receiver-hide").bind('click', function(event) {
-
-            event.preventDefault();
-
-            $(this).toggleClass('reverse').closest('.form-receiver ').find('.view-block').fadeToggle(0);
-
-        });
-
-        $(".receiver-delete").bind('click', function(event) {
-            event.preventDefault();
-
-            $(this).closest('.form-receiver').remove();
-
-        });
-    });
-});*/

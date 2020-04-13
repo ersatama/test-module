@@ -6,6 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+
+    public function getTakeTimeAttribute($value) {
+
+        if ($value == 0) {
+            return 'До обеда';
+        } elseif ($value == 1) {
+            return 'После обеда';
+        } else {
+            return $value;
+        }
+
+    }
+
     public function city()
     {
         return $this->hasOne('App\Models\City\city','id','city');

@@ -48,7 +48,7 @@ class InvoiceRepositoryEloquent implements InvoiceRepositoryInterface
         array $receiversCity,
         array $sender,
         array $receiver
-    ): int {
+    ): array {
 
         $arr = $this->convert($id, $senderCountry, $senderCity, $receiversCountry, $receiversCity, $sender, $receiver);
 
@@ -66,14 +66,14 @@ class InvoiceRepositoryEloquent implements InvoiceRepositoryInterface
     public function save(
         int $id,
         array $response
-    ):int {
-        $order_number = 0;
+    ):array {
+        $order_number = [0, $id];
         if (array_key_exists('order_number', $response)) {
-            $order_number = $response['order_number'];
+            $order_number[0] = $response['order_number'];
             foreach($response['shippings'] as &$value) {
                 $invoice = new invoice;
                 $invoice->order = $id;
-                $invoice->order_number = $order_number;
+                $invoice->order_number = $response['order_number'];
                 $invoice->invoice_number = $value['invoice_number'];
                 $invoice->invoice_status = $this->getStatusByInvoice($value['invoice_number'], Auth::user()->iin);
                 $invoice->status = 1;
@@ -131,7 +131,7 @@ class InvoiceRepositoryEloquent implements InvoiceRepositoryInterface
             'contact_person' => $sender['person']['name'],
             'contact_phone'  => $sender['person']['phone'],
             'take_date'      => date('Y-m-d', strtotime($sender['person']['take_date'])),
-            'take_time'      => $sender['person']['take_time'],
+            'take_time'      => $sender['person']['take_time'][ $sender['person']['take_time'] ],
             'post_index'     => $sender['index'],
         ];
     }
@@ -228,7 +228,7 @@ class InvoiceRepositoryEloquent implements InvoiceRepositoryInterface
         int $type
     ):string {
 
-        if ($type == 0) {
+        if ($type === 0) {
             return 'Отправителем';
         } else {
             return 'Получателем';

@@ -120,10 +120,10 @@ class HomeController extends Controller
             $sender,
             $receiver
         );
-        if ($order_number === 0) {
+        if ($order_number[0] === 0) {
             return response()->json(['error' => 'Не найдено Направление по данному запросу'], 404);
         }
-        return $orderId;
+        return json_encode($order_number);
 
     }
 
