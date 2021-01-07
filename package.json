@@ -10,7 +10,7 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "axios": "^0.19",
+        "axios": "^0.19.2",
         "bootstrap": "^4.0.0",
         "cross-env": "^5.1",
         "jquery": "^3.2",
@@ -32,6 +32,7 @@
         "socket.io": "^2.3.0",
         "v-mask": "^2.1.0",
         "v-money": "^0.8.1",
+        "vue-audio-recorder": "^3.0.1",
         "vue-masked-input": "^0.5.2",
         "vue-the-mask": "^0.11.1",
         "vue-toast-notification": "^0.2.0",

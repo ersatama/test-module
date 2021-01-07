@@ -5,31 +5,26 @@ import VueToast from 'vue-toast-notification';
 import VueMask from 'v-mask';
 import VueRouter from 'vue-router';
 import Money from 'v-money';
+import AudioRecorder from 'vue-audio-recorder';
+import http from 'axios';
 
 window.Vue = require('vue');
 window.Vue.use(VueToast);
 window.Vue.use(VueMask);
 window.Vue.use(VueRouter);
+window.Vue.use(AudioRecorder);
 window.Vue.use(Money, {precision: 4});
+window.Vue.prototype.$http = http;
 
-import order from './components/orders/OrdersComponent.vue';
 import home from './components/home/HomeComponent.vue';
 
 const routes = [
     {
-        path: '/order',
-        component: order
+        path: '/',
+        component: home
     },
     {
         path: '/home',
-        component: home
-    },
-    {
-        path: '/home/:id',
-        component: home
-    },
-    {
-        path: '/search',
         component: home
     }
 ];
@@ -55,7 +50,3 @@ const app = new Vue({ router }).$mount('#app');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-$(document).ready(function() {
-    AOS.init();
-});

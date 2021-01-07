@@ -55,7 +55,7 @@ class RegisterController extends Controller
              * 'surname' => ['required', 'string', 'max:255', 'regex:/(^([a-zA-ZА-ЯЦцУуШшЩщФфЫыРрЭэЧчТтЬьЮюЪъХхЁа-яё]+)$)/u'],
             'lastname' => ['nullable', 'string', 'max:255', 'regex:/(^([a-zA-ZА-ЯЦцУуШшЩщФфЫыРрЭэЧчТтЬьЮюЪъХхЁа-яё]+)$)/u'],
              */
-            'iin' => ['required', 'string', 'min:12', 'max:12', 'unique:users', 'regex:/^\d+$/u'],
+            'email' => ['required', 'string','email', 'min:3', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
         ]);
     }
@@ -69,9 +69,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'iin' => $data['iin'],
-            'password' => Hash::make($data['password']),
+            'name'      =>  $data['name'],
+            'email'     =>  $data['email'],
+            'password'  =>  Hash::make($data['password']),
         ]);
     }
 }

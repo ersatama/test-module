@@ -3,26 +3,12 @@
 @section('content')
     <div class="container" style="padding: 100px 0 100px 0;">
         <div class="row justify-content-center row-body">
-            <div class="col-md-8">
+            <div class="col-4">
                 <div class="row login-card">
-                    <div class="col-6 login-col">
+                    <div class="col-12 login-col">
                         <div class="form-login" id="register_form">
                             <div class="form-login-item">
-                                <div class="form-login-title">Регистрация в Spark Logistics!</div>
-                                <div class="form-login-icon">
-                                    <div class="form-login-icon-item">
-                                        <i class="fas fa-plane"></i>
-                                    </div>
-                                    <div class="form-login-icon-item">
-                                        <i class="fas fa-train"></i>
-                                    </div>
-                                    <div class="form-login-icon-item">
-                                        <i class="fas fa-ship"></i>
-                                    </div>
-                                    <div class="form-login-icon-item">
-                                        <i class="fas fa-shipping-fast"></i>
-                                    </div>
-                                </div>
+                                <div class="form-login-title">Регистрация!</div>
                                 <form method="POST" action="{{ route('register') }}">
                                     @csrf
                                     <div class="form-group">
@@ -34,7 +20,7 @@
                                     <div class="form-group">
                                         <div class="form-login-group is-invalid">
                                             <i class="fas fa-user"></i>
-                                            <input id="surname" type="text" class="form-data-input form-data-phone @error('iin') error-input @enderror" name="iin" value="{{ old('iin') }}" required autocomplete="none" autofocus placeholder="ИИН">
+                                            <input id="email" type="text" class="form-data-input form-data-phone @error('email') error-input @enderror" name="email" value="{{ old('email') }}" required autocomplete="none" autofocus placeholder="Email">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -47,18 +33,11 @@
                                         <button type="submit" class="btn-success login-button">Создать аккаунт</button>
                                     </div>
                                 </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 login-col">
-                        <div class="form-register">
-                            <div class="form-register-bg"></div>
-                            <div class="form-register-item">
-                                <div class="form-register-title">Добро пожаловать в Spark Logistics!</div>
-                                <div class="form-register-desc">У вас же есть аккаунт?</div>
-                                <a href="/login">
-                                    <button class="form-register-button btn-primary">Войти</button>
-                                </a>
+                                <div class="form-group">
+                                    <a href="/login">
+                                        <button class="btn-primary login-button">Логин</button>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

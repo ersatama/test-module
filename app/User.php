@@ -10,18 +10,14 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const ID    =   'id';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'juridical','name','full_name',
-        'iin','work_phone','email',
-        'fact_address','jur_address','jur_address',
-        'nds_number','bank_account','contract',
-        'code','manager','password',
-        'is_deleted',
+        'name','email','password'
     ];
 
     /**
@@ -30,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password'
     ];
 
     /**
@@ -40,6 +36,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'phone_verified_at' => 'datetime',
-        'email_verified_at' => 'datetime',
     ];
+
 }
