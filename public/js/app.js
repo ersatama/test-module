@@ -1965,11 +1965,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      to_comment: false,
       user_id: 0,
-      type: 'admin',
+      type: 1,
       status: true,
       audio: 'audio',
       headers: {
@@ -1983,22 +1998,43 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    var _this = this;
-
-    axios.get('/user/id').then(function (response) {
-      return _this.user_id = response.data;
+    var self = this;
+    axios({
+      method: 'get',
+      url: '/user/id',
+      responseType: 'json'
+    }).then(function (response) {
+      var data = response.data;
+      self.user_id = data.id;
+      self.type = data.type;
     });
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this = this;
 
     axios.get('/all').then(function (response) {
-      return _this2.col = response.data;
+      return _this.col = response.data;
     });
   },
   methods: {
+    beforeRecording: function beforeRecording(data) {},
+    afterRecording: function afterRecording(data) {},
+    success: function success(data) {},
+    beforeAudioUpload: function beforeAudioUpload(data) {},
+    removeAnswer: function removeAnswer(id) {
+      var col = this.col[id];
+      this.col[id].comment.to = null;
+      this.col[id].comment.to_id = null;
+      col.comment.audio = '/audio/save/' + id + '/' + col.id;
+    },
+    answer: function answer(id, index) {
+      var col = this.col[id];
+      col.comment.to = col.comments[index].user;
+      col.comment.to_id = index;
+      col.comment.audio = '/audio/save/' + id + '/' + col.id + '/' + index;
+    },
     comment: function comment(id) {
-      var _this3 = this;
+      var _this2 = this;
 
       var txt = this.col[id].comment.text.trim();
 
@@ -2008,14 +2044,23 @@ __webpack_require__.r(__webpack_exports__);
 
       var data = {
         id: this.col[id].id,
-        comment: txt
+        comment: txt,
+        to: null
       };
+
+      if (this.col[id].comment.to) {
+        data.to = this.col[id].comment.to_id;
+      }
+
+      this.removeAnswer(id);
+      this.col[id].comment.text = '';
       axios.post('/module/comment/', data).then(function (response) {
-        return _this3.col[id].comments = response.data;
+        return _this2.col[id].comments = response.data;
       });
     },
     upload: function upload(data) {
       var response = data.data;
+      this.removeAnswer(response.id);
       this.col[response.id].comments = response.comments;
     },
     callback: function callback(data) {
@@ -6570,25 +6615,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-toast-notification/dist/theme-sugar.css":
-/*!**************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-toast-notification/dist/theme-sugar.css ***!
-  \**************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.fadeOut{-webkit-animation-name:fadeOut;animation-name:fadeOut}@-webkit-keyframes fadeInDown{from{opacity:0;transform:translate3d(0, -100%, 0)}to{opacity:1;transform:none}}@keyframes fadeInDown{from{opacity:0;transform:translate3d(0, -100%, 0)}to{opacity:1;transform:none}}.fadeInDown{-webkit-animation-name:fadeInDown;animation-name:fadeInDown}@-webkit-keyframes fadeInUp{from{opacity:0;transform:translate3d(0, 100%, 0)}to{opacity:1;transform:none}}@keyframes fadeInUp{from{opacity:0;transform:translate3d(0, 100%, 0)}to{opacity:1;transform:none}}.fadeInUp{-webkit-animation-name:fadeInUp;animation-name:fadeInUp}.fade-enter-active,.fade-leave-active{transition:opacity 150ms ease-out}.fade-enter,.fade-leave-to{opacity:0}.notices{position:fixed;display:flex;top:0;bottom:0;left:0;right:0;padding:2em;overflow:hidden;z-index:1052;pointer-events:none}.notices .toast{display:inline-flex;align-items:center;-webkit-animation-duration:150ms;animation-duration:150ms;margin:.5em 0;box-shadow:0 1px 4px rgba(0,0,0,.12),0 0 6px rgba(0,0,0,.04);border-radius:.25em;pointer-events:auto;opacity:.92;color:#fff;min-height:3em;cursor:pointer}.notices .toast .toast-text{margin:0;padding:.5em 1em;word-break:break-all}.notices .toast .toast-icon{display:none}.notices .toast-success{background-color:#47d78a}.notices .toast-info{background-color:#1c85d5}.notices .toast-warning{background-color:#febc22}.notices .toast-error{background-color:#f7471c}.notices .toast-default{background-color:#343a40}.notices .toast.is-top,.notices .toast.is-bottom{align-self:center}.notices .toast.is-top-right,.notices .toast.is-bottom-right{align-self:flex-end}.notices .toast.is-top-left,.notices .toast.is-bottom-left{align-self:flex-start}.notices.is-top{flex-direction:column}.notices.is-bottom{flex-direction:column-reverse}.notices.is-custom-parent{position:absolute}@media screen and (max-width: 768px){.notices{padding:0;position:fixed !important}}.notices .toast{opacity:1;min-height:4em}.notices .toast .toast-text{padding:1.5em 1em}.notices .toast .toast-icon{display:block;width:27px;min-width:27px;height:27px;margin-left:1em;background:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 45.999 45.999'%3E %3Cpath fill='%23fff' d='M39.264 6.736c-8.982-8.981-23.545-8.982-32.528 0-8.982 8.982-8.981 23.545 0 32.528 8.982 8.98 23.545 8.981 32.528 0 8.981-8.983 8.98-23.545 0-32.528zM25.999 33a3 3 0 11-6 0V21a3 3 0 116 0v12zm-3.053-17.128c-1.728 0-2.88-1.224-2.844-2.735-.036-1.584 1.116-2.771 2.879-2.771 1.764 0 2.88 1.188 2.917 2.771-.001 1.511-1.152 2.735-2.952 2.735z'/%3E %3C/svg%3E\") no-repeat}.notices .toast.toast-success .toast-icon{background:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E %3Cpath fill='%23fff' d='M26 0C11.664 0 0 11.663 0 26s11.664 26 26 26 26-11.663 26-26S40.336 0 26 0zm14.495 17.329l-16 18a1.997 1.997 0 01-2.745.233l-10-8a2 2 0 012.499-3.124l8.517 6.813L37.505 14.67a2.001 2.001 0 012.99 2.659z'/%3E %3C/svg%3E\") no-repeat}.notices .toast.toast-error .toast-icon{background:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 51.976 51.976'%3E %3Cpath fill='%23fff' d='M44.373 7.603c-10.137-10.137-26.632-10.138-36.77 0-10.138 10.138-10.137 26.632 0 36.77s26.632 10.138 36.77 0c10.137-10.138 10.137-26.633 0-36.77zm-8.132 28.638a2 2 0 01-2.828 0l-7.425-7.425-7.778 7.778a2 2 0 11-2.828-2.828l7.778-7.778-7.425-7.425a2 2 0 112.828-2.828l7.425 7.425 7.071-7.071a2 2 0 112.828 2.828l-7.071 7.071 7.425 7.425a2 2 0 010 2.828z'/%3E %3C/svg%3E\") no-repeat}.notices .toast.toast-warning .toast-icon{background:url(\"data:image/svg+xml,%3Csvg viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3E %3Cpath fill='%23fff' d='M49.466 41.26L29.216 6.85c-.69-1.16-1.89-1.85-3.22-1.85-1.32 0-2.53.69-3.21 1.85L2.536 41.26c-.71 1.2-.72 2.64-.03 3.85.68 1.18 1.89 1.89 3.24 1.89h40.51c1.35 0 2.56-.71 3.23-1.89.7-1.21.69-2.65-.02-3.85zm-25.53-21.405h3.381v3.187l-.724 8.92H24.66l-.725-8.92v-3.187zm2.97 17.344a1.712 1.712 0 01-1.267.543c-.491 0-.914-.181-1.268-.543a1.788 1.788 0 01-.531-1.297c0-.502.176-.935.53-1.297a1.712 1.712 0 011.269-.544c.49 0 .914.181 1.268.544s.53.795.53 1.297c0 .503-.176.934-.53 1.297z'/%3E %3C/svg%3E\") no-repeat}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/home/HomeComponent.vue?vue&type=style&index=0&id=6caa5fce&scoped=true&lang=css&":
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/home/HomeComponent.vue?vue&type=style&index=0&id=6caa5fce&scoped=true&lang=css& ***!
@@ -6601,7 +6627,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.ar[data-v-6caa5fce] {\n    width: auto;\n    box-shadow: none;\n    border-radius: 0;\n    background: #f8f9fa;\n    margin: 15px;\n}\nsvg[data-v-6caa5fce] {\n    vertical-align: baseline !important;\n}\naudio[data-v-6caa5fce] {\n    width: 100%;\n    height: 30px;\n    margin: 10px 0 0 0;\n}\n", ""]);
+exports.push([module.i, "\n.ar[data-v-6caa5fce] {\n    width: auto;\n    box-shadow: none;\n    border-radius: 0;\n    background: #f8f9fa;\n    margin: 15px;\n}\nsvg[data-v-6caa5fce] {\n    vertical-align: baseline !important;\n}\naudio[data-v-6caa5fce] {\n    width: 100%;\n    height: 30px;\n    margin: 10px 0 0 0;\n}\n.answer[data-v-6caa5fce] {\n    float: right;\n    cursor: pointer;\n}\n.answer[data-v-6caa5fce]:hover {\n    text-decoration: underline;\n}\n", ""]);
 
 // exports
 
@@ -38058,474 +38084,6 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ "./node_modules/v-mask/dist/v-mask.esm.js":
-/*!************************************************!*\
-  !*** ./node_modules/v-mask/dist/v-mask.esm.js ***!
-  \************************************************/
-/*! exports provided: default, VueMaskDirective, VueMaskFilter, VueMaskPlugin */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VueMaskDirective", function() { return directive; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VueMaskFilter", function() { return filter; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VueMaskPlugin", function() { return plugin; });
-function _typeof(obj) {
-  "@babel/helpers - typeof";
-
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof = function (obj) {
-      return typeof obj;
-    };
-  } else {
-    _typeof = function (obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
-
-  return _typeof(obj);
-}
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
-
-  if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    });
-    keys.push.apply(keys, symbols);
-  }
-
-  return keys;
-}
-
-function _objectSpread2(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-
-    if (i % 2) {
-      ownKeys(Object(source), true).forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-      ownKeys(Object(source)).forEach(function (key) {
-        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-      });
-    }
-  }
-
-  return target;
-}
-
-var placeholderChar = '_';
-var strFunction = 'function';
-
-var emptyArray = [];
-function convertMaskToPlaceholder() {
-  var mask = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : emptyArray;
-  var placeholderChar$1 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : placeholderChar;
-
-  if (!isArray(mask)) {
-    throw new Error('Text-mask:convertMaskToPlaceholder; The mask property must be an array.');
-  }
-
-  if (mask.indexOf(placeholderChar$1) !== -1) {
-    throw new Error('Placeholder character must not be used as part of the mask. Please specify a character ' + 'that is not present in your mask as your placeholder character.\n\n' + "The placeholder character that was received is: ".concat(JSON.stringify(placeholderChar$1), "\n\n") + "The mask that was received is: ".concat(JSON.stringify(mask)));
-  }
-
-  return mask.map(function (char) {
-    return char instanceof RegExp ? placeholderChar$1 : char;
-  }).join('');
-}
-function isArray(value) {
-  return Array.isArray && Array.isArray(value) || value instanceof Array;
-}
-var strCaretTrap = '[]';
-function processCaretTraps(mask) {
-  var indexes = [];
-  var indexOfCaretTrap;
-
-  while (indexOfCaretTrap = mask.indexOf(strCaretTrap), indexOfCaretTrap !== -1) {
-    indexes.push(indexOfCaretTrap);
-    mask.splice(indexOfCaretTrap, 1);
-  }
-
-  return {
-    maskWithoutCaretTraps: mask,
-    indexes: indexes
-  };
-}
-
-var emptyArray$1 = [];
-var emptyString = '';
-function conformToMask() {
-  var rawValue = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : emptyString;
-  var mask = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : emptyArray$1;
-  var config = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-
-  if (!isArray(mask)) {
-    if (_typeof(mask) === strFunction) {
-      mask = mask(rawValue, config);
-      mask = processCaretTraps(mask).maskWithoutCaretTraps;
-    } else {
-      throw new Error('Text-mask:conformToMask; The mask property must be an array.');
-    }
-  }
-
-  var _config$guide = config.guide,
-      guide = _config$guide === void 0 ? true : _config$guide,
-      _config$previousConfo = config.previousConformedValue,
-      previousConformedValue = _config$previousConfo === void 0 ? emptyString : _config$previousConfo,
-      _config$placeholderCh = config.placeholderChar,
-      placeholderChar$1 = _config$placeholderCh === void 0 ? placeholderChar : _config$placeholderCh,
-      _config$placeholder = config.placeholder,
-      placeholder = _config$placeholder === void 0 ? convertMaskToPlaceholder(mask, placeholderChar$1) : _config$placeholder,
-      currentCaretPosition = config.currentCaretPosition,
-      keepCharPositions = config.keepCharPositions;
-  var suppressGuide = guide === false && previousConformedValue !== undefined;
-  var rawValueLength = rawValue.length;
-  var previousConformedValueLength = previousConformedValue.length;
-  var placeholderLength = placeholder.length;
-  var maskLength = mask.length;
-  var editDistance = rawValueLength - previousConformedValueLength;
-  var isAddition = editDistance > 0;
-  var indexOfFirstChange = currentCaretPosition + (isAddition ? -editDistance : 0);
-  var indexOfLastChange = indexOfFirstChange + Math.abs(editDistance);
-
-  if (keepCharPositions === true && !isAddition) {
-    var compensatingPlaceholderChars = emptyString;
-
-    for (var i = indexOfFirstChange; i < indexOfLastChange; i++) {
-      if (placeholder[i] === placeholderChar$1) {
-        compensatingPlaceholderChars += placeholderChar$1;
-      }
-    }
-
-    rawValue = rawValue.slice(0, indexOfFirstChange) + compensatingPlaceholderChars + rawValue.slice(indexOfFirstChange, rawValueLength);
-  }
-
-  var rawValueArr = rawValue.split(emptyString).map(function (char, i) {
-    return {
-      char: char,
-      isNew: i >= indexOfFirstChange && i < indexOfLastChange
-    };
-  });
-
-  for (var _i = rawValueLength - 1; _i >= 0; _i--) {
-    var char = rawValueArr[_i].char;
-
-    if (char !== placeholderChar$1) {
-      var shouldOffset = _i >= indexOfFirstChange && previousConformedValueLength === maskLength;
-
-      if (char === placeholder[shouldOffset ? _i - editDistance : _i]) {
-        rawValueArr.splice(_i, 1);
-      }
-    }
-  }
-
-  var conformedValue = emptyString;
-  var someCharsRejected = false;
-
-  placeholderLoop: for (var _i2 = 0; _i2 < placeholderLength; _i2++) {
-    var charInPlaceholder = placeholder[_i2];
-
-    if (charInPlaceholder === placeholderChar$1) {
-      if (rawValueArr.length > 0) {
-        while (rawValueArr.length > 0) {
-          var _rawValueArr$shift = rawValueArr.shift(),
-              rawValueChar = _rawValueArr$shift.char,
-              isNew = _rawValueArr$shift.isNew;
-
-          if (rawValueChar === placeholderChar$1 && suppressGuide !== true) {
-            conformedValue += placeholderChar$1;
-            continue placeholderLoop;
-          } else if (mask[_i2].test(rawValueChar)) {
-            if (keepCharPositions !== true || isNew === false || previousConformedValue === emptyString || guide === false || !isAddition) {
-              conformedValue += rawValueChar;
-            } else {
-              var rawValueArrLength = rawValueArr.length;
-              var indexOfNextAvailablePlaceholderChar = null;
-
-              for (var _i3 = 0; _i3 < rawValueArrLength; _i3++) {
-                var charData = rawValueArr[_i3];
-
-                if (charData.char !== placeholderChar$1 && charData.isNew === false) {
-                  break;
-                }
-
-                if (charData.char === placeholderChar$1) {
-                  indexOfNextAvailablePlaceholderChar = _i3;
-                  break;
-                }
-              }
-
-              if (indexOfNextAvailablePlaceholderChar !== null) {
-                conformedValue += rawValueChar;
-                rawValueArr.splice(indexOfNextAvailablePlaceholderChar, 1);
-              } else {
-                _i2--;
-              }
-            }
-
-            continue placeholderLoop;
-          } else {
-            someCharsRejected = true;
-          }
-        }
-      }
-
-      if (suppressGuide === false) {
-        conformedValue += placeholder.substr(_i2, placeholderLength);
-      }
-
-      break;
-    } else {
-      conformedValue += charInPlaceholder;
-    }
-  }
-
-  if (suppressGuide && isAddition === false) {
-    var indexOfLastFilledPlaceholderChar = null;
-
-    for (var _i4 = 0; _i4 < conformedValue.length; _i4++) {
-      if (placeholder[_i4] === placeholderChar$1) {
-        indexOfLastFilledPlaceholderChar = _i4;
-      }
-    }
-
-    if (indexOfLastFilledPlaceholderChar !== null) {
-      conformedValue = conformedValue.substr(0, indexOfLastFilledPlaceholderChar + 1);
-    } else {
-      conformedValue = emptyString;
-    }
-  }
-
-  return {
-    conformedValue: conformedValue,
-    meta: {
-      someCharsRejected: someCharsRejected
-    }
-  };
-}
-
-var NEXT_CHAR_OPTIONAL = {
-  __nextCharOptional__: true
-};
-var defaultMaskReplacers = {
-  '#': /\d/,
-  A: /[a-z]/i,
-  N: /[a-z0-9]/i,
-  '?': NEXT_CHAR_OPTIONAL,
-  X: /./
-};
-
-var stringToRegexp = function stringToRegexp(str) {
-  var lastSlash = str.lastIndexOf('/');
-  return new RegExp(str.slice(1, lastSlash), str.slice(lastSlash + 1));
-};
-
-var makeRegexpOptional = function makeRegexpOptional(charRegexp) {
-  return stringToRegexp(charRegexp.toString().replace(/.(\/)[gmiyus]{0,6}$/, function (match) {
-    return match.replace('/', '?/');
-  }));
-};
-
-var escapeIfNeeded = function escapeIfNeeded(char) {
-  return '[\\^$.|?*+()'.indexOf(char) > -1 ? "\\".concat(char) : char;
-};
-
-var charRegexp = function charRegexp(char) {
-  return new RegExp("/[".concat(escapeIfNeeded(char), "]/"));
-};
-
-var isRegexp = function isRegexp(entity) {
-  return entity instanceof RegExp;
-};
-
-var castToRegexp = function castToRegexp(char) {
-  return isRegexp(char) ? char : charRegexp(char);
-};
-
-function stringMaskToRegExpMask(stringMask) {
-  return stringMask.split('').map(function (char, index, array) {
-    var maskChar = defaultMaskReplacers[char] || char;
-    var previousChar = array[index - 1];
-    var previousMaskChar = defaultMaskReplacers[previousChar] || previousChar;
-
-    if (maskChar === NEXT_CHAR_OPTIONAL) {
-      return null;
-    }
-
-    if (previousMaskChar === NEXT_CHAR_OPTIONAL) {
-      return makeRegexpOptional(castToRegexp(maskChar));
-    }
-
-    return maskChar;
-  }).filter(Boolean);
-}
-
-var trigger = function trigger(el, type) {
-  var e = document.createEvent('HTMLEvents');
-  e.initEvent(type, true, true);
-  el.dispatchEvent(e);
-};
-var queryInputElementInside = function queryInputElementInside(el) {
-  return el instanceof HTMLInputElement ? el : el.querySelector('input') || el;
-};
-
-var inBrowser = typeof window !== 'undefined';
-var UA = inBrowser && window.navigator.userAgent.toLowerCase();
-var isEdge = UA && UA.indexOf('edge/') > 0;
-var isAndroid = UA && UA.indexOf('android') > 0;
-var isChrome = UA && /chrome\/\d+/.test(UA) && !isEdge;
-
-function createOptions() {
-  var elementOptions = new Map();
-  var defaultOptions = {
-    previousValue: '',
-    mask: []
-  };
-
-  function get(el) {
-    return elementOptions.get(el) || _objectSpread2({}, defaultOptions);
-  }
-
-  function partiallyUpdate(el, newOptions) {
-    elementOptions.set(el, _objectSpread2({}, get(el), {}, newOptions));
-  }
-
-  function remove(el) {
-    elementOptions.delete(el);
-  }
-
-  return {
-    partiallyUpdate: partiallyUpdate,
-    remove: remove,
-    get: get
-  };
-}
-
-var options = createOptions();
-
-function triggerInputUpdate(el) {
-  var fn = trigger.bind(null, el, 'input');
-
-  if (isAndroid && isChrome) {
-    setTimeout(fn, 0);
-  } else {
-    fn();
-  }
-}
-
-function updateValue(el) {
-  var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-  var value = el.value;
-
-  var _options$get = options.get(el),
-      previousValue = _options$get.previousValue,
-      mask = _options$get.mask;
-
-  var isValueChanged = value !== previousValue;
-  var isLengthIncreased = value.length > previousValue.length;
-  var isUpdateNeeded = value && isValueChanged && isLengthIncreased;
-
-  if (force || isUpdateNeeded) {
-    var _conformToMask = conformToMask(value, mask, {
-      guide: false
-    }),
-        conformedValue = _conformToMask.conformedValue;
-
-    el.value = conformedValue;
-    triggerInputUpdate(el);
-  }
-
-  options.partiallyUpdate(el, {
-    previousValue: value
-  });
-}
-
-function updateMask(el, mask) {
-  options.partiallyUpdate(el, {
-    mask: stringMaskToRegExpMask(mask)
-  });
-}
-
-var directive = {
-  bind: function bind(el, _ref) {
-    var value = _ref.value;
-    el = queryInputElementInside(el);
-    updateMask(el, value);
-    updateValue(el);
-  },
-  componentUpdated: function componentUpdated(el, _ref2) {
-    var value = _ref2.value,
-        oldValue = _ref2.oldValue;
-    el = queryInputElementInside(el);
-    var isMaskChanged = value !== oldValue;
-
-    if (isMaskChanged) {
-      updateMask(el, value);
-    }
-
-    updateValue(el, isMaskChanged);
-  },
-  unbind: function unbind(el) {
-    el = queryInputElementInside(el);
-    options.remove(el);
-  }
-};
-
-function filter (value, stringMask) {
-  var mask = stringMaskToRegExpMask(stringMask);
-
-  var _conformToMask = conformToMask(value, mask, {
-    guide: false
-  }),
-      conformedValue = _conformToMask.conformedValue;
-
-  return conformedValue;
-}
-
-var plugin = (function (Vue) {
-  Vue.directive('mask', directive);
-  Vue.filter('VMask', filter);
-});
-
-/* harmony default export */ __webpack_exports__["default"] = (plugin);
-
-
-
-/***/ }),
-
-/***/ "./node_modules/v-money/dist/v-money.js":
-/*!**********************************************!*\
-  !*** ./node_modules/v-money/dist/v-money.js ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-(function(e,t){ true?module.exports=t():undefined})(this,function(){return function(e){function t(r){if(n[r])return n[r].exports;var i=n[r]={i:r,l:!1,exports:{}};return e[r].call(i.exports,i,i.exports,t),i.l=!0,i.exports}var n={};return t.m=e,t.c=n,t.i=function(e){return e},t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p=".",t(t.s=9)}([function(e,t,n){"use strict";t.a={prefix:"",suffix:"",thousands:",",decimal:".",precision:2}},function(e,t,n){"use strict";var r=n(2),i=n(5),u=n(0);t.a=function(e,t){if(t.value){var o=n.i(i.a)(u.a,t.value);if("INPUT"!==e.tagName.toLocaleUpperCase()){var a=e.getElementsByTagName("input");1!==a.length||(e=a[0])}e.oninput=function(){var t=e.value.length-e.selectionEnd;e.value=n.i(r.a)(e.value,o),t=Math.max(t,o.suffix.length),t=e.value.length-t,t=Math.max(t,o.prefix.length+1),n.i(r.b)(e,t),e.dispatchEvent(n.i(r.c)("change"))},e.onfocus=function(){n.i(r.b)(e,e.value.length-o.suffix.length)},e.oninput(),e.dispatchEvent(n.i(r.c)("input"))}}},function(e,t,n){"use strict";function r(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:m.a;"number"==typeof e&&(e=e.toFixed(o(t.precision)));var n=e.indexOf("-")>=0?"-":"",r=u(e),i=c(r,t.precision),a=d(i).split("."),p=a[0],l=a[1];return p=f(p,t.thousands),t.prefix+n+s(p,l,t.decimal)+t.suffix}function i(e,t){var n=e.indexOf("-")>=0?-1:1,r=u(e),i=c(r,t);return parseFloat(i)*n}function u(e){return d(e).replace(/\D+/g,"")||"0"}function o(e){return a(0,e,20)}function a(e,t,n){return Math.max(e,Math.min(t,n))}function c(e,t){var n=Math.pow(10,t);return(parseFloat(e)/n).toFixed(o(t))}function f(e,t){return e.replace(/(\d)(?=(?:\d{3})+\b)/gm,"$1"+t)}function s(e,t,n){return t?e+n+t:e}function d(e){return e?e.toString():""}function p(e,t){var n=function(){e.setSelectionRange(t,t)};e===document.activeElement&&(n(),setTimeout(n,1))}function l(e){var t=document.createEvent("Event");return t.initEvent(e,!0,!0),t}var m=n(0);n.d(t,"a",function(){return r}),n.d(t,"d",function(){return i}),n.d(t,"b",function(){return p}),n.d(t,"c",function(){return l})},function(e,t,n){"use strict";function r(e,t){t&&Object.keys(t).map(function(e){a.a[e]=t[e]}),e.directive("money",o.a),e.component("money",u.a)}Object.defineProperty(t,"__esModule",{value:!0});var i=n(6),u=n.n(i),o=n(1),a=n(0);n.d(t,"Money",function(){return u.a}),n.d(t,"VMoney",function(){return o.a}),n.d(t,"options",function(){return a.a}),n.d(t,"VERSION",function(){return c});var c="0.8.1";t.default=r,"undefined"!=typeof window&&window.Vue&&window.Vue.use(r)},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n(1),i=n(0),u=n(2);t.default={name:"Money",props:{value:{required:!0,type:[Number,String],default:0},masked:{type:Boolean,default:!1},precision:{type:Number,default:function(){return i.a.precision}},decimal:{type:String,default:function(){return i.a.decimal}},thousands:{type:String,default:function(){return i.a.thousands}},prefix:{type:String,default:function(){return i.a.prefix}},suffix:{type:String,default:function(){return i.a.suffix}}},directives:{money:r.a},data:function(){return{formattedValue:""}},watch:{value:{immediate:!0,handler:function(e,t){var r=n.i(u.a)(e,this.$props);r!==this.formattedValue&&(this.formattedValue=r)}}},methods:{change:function(e){this.$emit("input",this.masked?e.target.value:n.i(u.d)(e.target.value,this.precision))}}}},function(e,t,n){"use strict";t.a=function(e,t){return e=e||{},t=t||{},Object.keys(e).concat(Object.keys(t)).reduce(function(n,r){return n[r]=void 0===t[r]?e[r]:t[r],n},{})}},function(e,t,n){var r=n(7)(n(4),n(8),null,null);e.exports=r.exports},function(e,t){e.exports=function(e,t,n,r){var i,u=e=e||{},o=typeof e.default;"object"!==o&&"function"!==o||(i=e,u=e.default);var a="function"==typeof u?u.options:u;if(t&&(a.render=t.render,a.staticRenderFns=t.staticRenderFns),n&&(a._scopeId=n),r){var c=a.computed||(a.computed={});Object.keys(r).forEach(function(e){var t=r[e];c[e]=function(){return t}})}return{esModule:i,exports:u,options:a}}},function(e,t){e.exports={render:function(){var e=this,t=e.$createElement;return(e._self._c||t)("input",{directives:[{name:"money",rawName:"v-money",value:{precision:e.precision,decimal:e.decimal,thousands:e.thousands,prefix:e.prefix,suffix:e.suffix},expression:"{precision, decimal, thousands, prefix, suffix}"}],staticClass:"v-money",attrs:{type:"tel"},domProps:{value:e.formattedValue},on:{change:e.change}})},staticRenderFns:[]}},function(e,t,n){e.exports=n(3)}])});
-
-/***/ }),
-
 /***/ "./node_modules/vue-audio-recorder/dist/vue-audio-recorder.min.js":
 /*!************************************************************************!*\
   !*** ./node_modules/vue-audio-recorder/dist/vue-audio-recorder.min.js ***!
@@ -38558,213 +38116,322 @@ var render = function() {
       ? _c(
           "div",
           { staticClass: "col-6 align-self-center" },
-          _vm._l(_vm.col, function(item, id) {
-            return _c("div", { staticClass: "card mb-3 bg-light" }, [
-              _c("h5", { staticClass: "card-title font-weight-bold p-3 m-0" }, [
-                _vm._v(_vm._s(item.title))
-              ]),
-              _vm._v(" "),
-              _c("hr"),
-              _vm._v(" "),
-              item.comments.length > 0
-                ? _c(
-                    "div",
-                    { staticClass: "row p-3" },
-                    _vm._l(item.comments, function(comment) {
-                      return _c(
-                        "div",
-                        {
-                          staticClass: "col-6 text-white mx-3 mb-3 p-2 rounded",
-                          class: {
-                            "bg-success ml-auto":
-                              _vm.user_id === comment.user_id,
-                            "bg-primary": !(_vm.user_id === comment.user_id)
-                          }
-                        },
-                        [
-                          _c("div", { staticStyle: { "font-size": "10px" } }, [
-                            _vm._v(_vm._s(comment.user.name) + " "),
-                            _c(
-                              "span",
-                              { staticClass: "text-dark text-right" },
-                              [_vm._v(_vm._s(comment.user.email))]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass: "font-weight-bold",
-                              staticStyle: { "font-size": "14px" }
-                            },
-                            [_vm._v(_vm._s(comment.comment))]
-                          ),
-                          _vm._v(" "),
-                          comment.audio
-                            ? _c("div", [
-                                _c("audio", {
-                                  attrs: { src: comment.audio, controls: "" }
-                                })
-                              ])
-                            : _vm._e()
-                        ]
-                      )
-                    }),
-                    0
-                  )
-                : _c(
-                    "div",
-                    {
-                      staticClass: "px-3 text-secondary",
-                      staticStyle: { "font-size": "12px" }
-                    },
-                    [
-                      _vm._v(
-                        "\n                Вы можете оставить первым комментарий\n            "
-                      )
-                    ]
-                  ),
-              _vm._v(" "),
-              _c("hr"),
-              _vm._v(" "),
-              _c("div", { staticClass: "row pb-3" }, [
-                _c("div", { staticClass: "col mx-3" }, [
-                  _c("label", { attrs: { for: "txt" + id } }, [
-                    _vm._v("Ваш комментарий (" + _vm._s(item.title) + ")")
-                  ]),
-                  _vm._v(" "),
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: item.comment.text,
-                        expression: "item.comment.text"
-                      }
-                    ],
-                    ref: "txt" + id,
-                    refInFor: true,
-                    staticClass: "form-control w-100",
-                    staticStyle: { resize: "none", "font-size": "12px" },
-                    attrs: { rows: "3", id: "txt" + item },
-                    domProps: { value: item.comment.text },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(item.comment, "text", $event.target.value)
-                      }
-                    }
-                  })
-                ]),
-                _vm._v(" "),
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._l(_vm.col, function(item, id) {
+              return _c("div", { staticClass: "card mb-3 bg-light" }, [
                 _c(
-                  "div",
-                  { staticClass: "col-12" },
-                  [
-                    _c(
-                      "button",
+                  "h5",
+                  { staticClass: "card-title font-weight-bold p-3 m-0" },
+                  [_vm._v(_vm._s(item.title))]
+                ),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                item.comments.length > 0
+                  ? _c(
+                      "div",
+                      { staticClass: "row p-3" },
+                      _vm._l(item.comments, function(comment, index) {
+                        return _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col-6 text-white mx-3 mb-3 p-2 rounded",
+                            class: {
+                              "bg-success ml-auto":
+                                _vm.user_id === comment.user_id,
+                              "bg-primary": !(_vm.user_id === comment.user_id)
+                            }
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticStyle: { "font-size": "10px" } },
+                              [
+                                _vm._v(_vm._s(comment.user.name) + " "),
+                                _c("span", { staticClass: "text-dark" }, [
+                                  _vm._v(_vm._s(comment.user.email))
+                                ]),
+                                _vm._v(" "),
+                                comment.comment_id
+                                  ? [
+                                      _vm._v(
+                                        "ответил " +
+                                          _vm._s(comment.comment_id.user.name) +
+                                          " "
+                                      ),
+                                      _c("span", { staticClass: "text-dark" }, [
+                                        _vm._v(
+                                          _vm._s(comment.comment_id.user.email)
+                                        )
+                                      ])
+                                    ]
+                                  : _vm._e()
+                              ],
+                              2
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "font-weight-bold",
+                                staticStyle: { "font-size": "14px" }
+                              },
+                              [_vm._v(_vm._s(comment.comment))]
+                            ),
+                            _vm._v(" "),
+                            comment.audio
+                              ? _c("div", [
+                                  _c("audio", {
+                                    attrs: { src: comment.audio, controls: "" }
+                                  })
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "text-light",
+                                staticStyle: { "font-size": "9px" }
+                              },
+                              [
+                                _vm._v(_vm._s(comment.created_at) + " "),
+                                _vm.user_id !== comment.user_id
+                                  ? _c(
+                                      "span",
+                                      {
+                                        staticClass: "text-grey answer",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.answer(id, index)
+                                          }
+                                        }
+                                      },
+                                      [_vm._v("Ответить")]
+                                    )
+                                  : _vm._e()
+                              ]
+                            )
+                          ]
+                        )
+                      }),
+                      0
+                    )
+                  : _c(
+                      "div",
                       {
-                        staticClass:
-                          "btn btn-primary pull-right mt-3 ml-3 mr-3",
-                        staticStyle: { "font-size": "12px" },
-                        on: {
-                          click: function($event) {
-                            return _vm.comment(id)
-                          }
-                        }
+                        staticClass: "px-3 text-secondary",
+                        staticStyle: { "font-size": "12px" }
                       },
-                      [_vm._v("Оставить комментарий")]
+                      [
+                        _vm._v(
+                          "\n                Вы можете оставить первым комментарий\n            "
+                        )
+                      ]
                     ),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("div", { staticClass: "row pb-3" }, [
+                  _c("div", { staticClass: "col mx-3" }, [
+                    _c("label", { attrs: { for: "txt" + id } }, [
+                      _vm._v("Ваш комментарий (" + _vm._s(item.title) + ")")
+                    ]),
                     _vm._v(" "),
-                    _vm.type === "admin"
-                      ? [
-                          !item.audio.status
-                            ? _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-success mt-3",
-                                  staticStyle: { "font-size": "12px" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.record(id, true)
-                                    }
-                                  }
-                                },
-                                [_vm._v("Запись")]
-                              )
-                            : _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-danger mt-3",
-                                  staticStyle: { "font-size": "12px" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.record(id, false)
-                                    }
-                                  }
-                                },
-                                [_vm._v("Отменить")]
-                              ),
-                          _vm._v(" "),
-                          _c(
+                    _c("div", { staticStyle: { "font-size": "11px" } }, [
+                      item.comment.to
+                        ? _c(
                             "div",
                             {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: item.audio.status,
-                                  expression: "item.audio.status"
-                                }
-                              ],
-                              staticClass: "row"
+                              staticClass:
+                                "bg-primary text-white mb-3 p-2 px-3 w-auto",
+                              staticStyle: {
+                                float: "left",
+                                "border-radius": "30px"
+                              }
                             },
                             [
+                              _vm._v(
+                                "Ответить " + _vm._s(item.comment.to.name) + " "
+                              ),
+                              _c("span", { staticClass: "text-dark" }, [
+                                _vm._v(_vm._s(item.comment.to.email))
+                              ]),
+                              _vm._v(" "),
                               _c(
-                                "div",
-                                { staticClass: "col" },
-                                [
-                                  _c("audio-recorder", {
-                                    attrs: {
-                                      "upload-url":
-                                        "/audio/save/" + id + "/" + item.id,
-                                      attempts: 1,
-                                      time: 10,
-                                      filename: _vm.audio,
-                                      headers: _vm.headers,
-                                      "show-download-button": false,
-                                      "successful-upload": _vm.upload,
-                                      "before-recording": _vm.callback,
-                                      "pause-recording": _vm.callback,
-                                      "after-recording": _vm.callback,
-                                      "select-record": _vm.callback,
-                                      "before-upload": _vm.callback,
-                                      "failed-upload": _vm.callback
+                                "span",
+                                {
+                                  staticClass: "font-weight-bold text-white",
+                                  staticStyle: { cursor: "pointer" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.removeAnswer(id)
                                     }
-                                  })
-                                ],
-                                1
+                                  }
+                                },
+                                [_vm._v("Удалить")]
                               )
                             ]
                           )
-                        ]
-                      : _vm._e()
-                  ],
-                  2
-                )
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: item.comment.text,
+                          expression: "item.comment.text"
+                        }
+                      ],
+                      ref: "txt" + id,
+                      refInFor: true,
+                      staticClass: "form-control w-100",
+                      staticStyle: { resize: "none", "font-size": "12px" },
+                      attrs: { rows: "3", id: "txt" + item },
+                      domProps: { value: item.comment.text },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(item.comment, "text", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-12" },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "btn btn-primary pull-right mt-3 ml-3 mr-3",
+                          staticStyle: { "font-size": "12px" },
+                          on: {
+                            click: function($event) {
+                              return _vm.comment(id)
+                            }
+                          }
+                        },
+                        [_vm._v("Оставить комментарий")]
+                      ),
+                      _vm._v(" "),
+                      _vm.type === 2
+                        ? [
+                            !item.audio.status
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-success mt-3",
+                                    staticStyle: { "font-size": "12px" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.record(id, true)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Запись")]
+                                )
+                              : _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-danger mt-3",
+                                    staticStyle: { "font-size": "12px" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.record(id, false)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Отменить")]
+                                ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: item.audio.status,
+                                    expression: "item.audio.status"
+                                  }
+                                ],
+                                staticClass: "row"
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "col" },
+                                  [
+                                    _c("audio-recorder", {
+                                      ref: "record-" + id,
+                                      refInFor: true,
+                                      attrs: {
+                                        dataId: id,
+                                        "upload-url": item.comment.audio,
+                                        attempts: 1,
+                                        time: 10,
+                                        filename: _vm.audio,
+                                        headers: _vm.headers,
+                                        "show-download-button": false,
+                                        "successful-upload": _vm.upload,
+                                        "before-recording": _vm.beforeRecording,
+                                        "pause-recording": _vm.callback,
+                                        "after-recording": _vm.afterRecording,
+                                        "select-record": _vm.callback,
+                                        "before-upload": _vm.beforeAudioUpload,
+                                        "failed-upload": _vm.callback
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ]
+                            )
+                          ]
+                        : _vm._e()
+                    ],
+                    2
+                  )
+                ])
               ])
-            ])
-          }),
-          0
+            })
+          ],
+          2
         )
       : _c("div", { staticClass: "color-dark h2" }, [
           _vm._v("\n        Загрузка коммента...\n    ")
         ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("table", { staticClass: "table border-0 w-100" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Добро пожаловать вы модуль!")]),
+        _vm._v(" "),
+        _c("td", [
+          _c("a", { attrs: { href: "/logout" } }, [
+            _c("button", { staticClass: "btn btn-sm btn-danger w-100" }, [
+              _vm._v("Выйти")
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -41806,47 +41473,6 @@ if (inBrowser && window.Vue) {
 
 /* harmony default export */ __webpack_exports__["default"] = (VueRouter);
 
-
-/***/ }),
-
-/***/ "./node_modules/vue-toast-notification/dist/index.min.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/vue-toast-notification/dist/index.min.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-!function(t,e){ true?module.exports=e(__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js")):undefined}("undefined"!=typeof self?self:this,(function(t){return function(t){var e={};function n(o){if(e[o])return e[o].exports;var i=e[o]={i:o,l:!1,exports:{}};return t[o].call(i.exports,i,i.exports,n),i.l=!0,i.exports}return n.m=t,n.c=e,n.d=function(t,e,o){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:o})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var o=Object.create(null);if(n.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var i in t)n.d(o,i,function(e){return t[e]}.bind(null,i));return o},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s=3)}([function(e,n){e.exports=t},,,function(t,e,n){"use strict";n.r(e);var o=function(t){void 0!==t.remove?t.remove():t.parentNode.removeChild(t)},i="undefined"!=typeof window?window.HTMLElement:Object,s=n(0),r=new(n.n(s).a);var a=function(t,e,n,o,i,s,r,a){var u,c="function"==typeof t?t.options:t;if(e&&(c.render=e,c.staticRenderFns=n,c._compiled=!0),o&&(c.functional=!0),s&&(c._scopeId="data-v-"+s),r?(u=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),i&&i.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(r)},c._ssrRegister=u):i&&(u=a?function(){i.call(this,this.$root.$options.shadowRoot)}:i),u)if(c.functional){c._injectStyles=u;var l=c.render;c.render=function(t,e){return u.call(e),l(t,e)}}else{var p=c.beforeCreate;c.beforeCreate=p?[].concat(p,u):[u]}return{exports:t,options:c}}({name:"toast",props:{message:{type:String,required:!0},type:{type:String,default:"success"},position:{type:String,default:"bottom-right"},duration:{type:Number,default:3e3},dismissible:{type:Boolean,default:!0},onClose:{type:Function,default:function(){}},onClick:{type:Function,default:function(){}},queue:Boolean,container:{type:[Object,Function,i],default:null}},data:function(){return{isActive:!1,parentTop:null,parentBottom:null}},beforeMount:function(){this.setupContainer()},mounted:function(){this.showNotice(),r.$on("toast.clear",this.close)},methods:{setupContainer:function(){if(this.parentTop=document.querySelector(".notices.is-top"),this.parentBottom=document.querySelector(".notices.is-bottom"),!this.parentTop||!this.parentBottom){this.parentTop||(this.parentTop=document.createElement("div"),this.parentTop.className="notices is-top"),this.parentBottom||(this.parentBottom=document.createElement("div"),this.parentBottom.className="notices is-bottom");var t=this.container||document.body;t.appendChild(this.parentTop),t.appendChild(this.parentBottom);this.container&&(this.parentTop.classList.add("is-custom-parent"),this.parentBottom.classList.add("is-custom-parent"))}},shouldQueue:function(){return!!this.queue&&(this.parentTop.childElementCount>0||this.parentBottom.childElementCount>0)},close:function(){var t=arguments,e=this;clearTimeout(this.timer),this.isActive=!1,setTimeout((function(){e.onClose.apply(null,t),e.$destroy(),o(e.$el)}),150)},showNotice:function(){var t=this;this.shouldQueue()?setTimeout((function(){return t.showNotice()}),250):(this.correctParent.insertAdjacentElement("afterbegin",this.$el),this.isActive=!0,this.timer=setTimeout((function(){return t.close()}),this.duration))},whenClicked:function(){this.dismissible&&(this.onClick.apply(null,arguments),this.close())}},computed:{correctParent:function(){switch(this.position){case"top-right":case"top":case"top-left":return this.parentTop;case"bottom-right":case"bottom":case"bottom-left":return this.parentBottom}},transition:function(){switch(this.position){case"top-right":case"top":case"top-left":return{enter:"fadeInDown",leave:"fadeOut"};case"bottom-right":case"bottom":case"bottom-left":return{enter:"fadeInUp",leave:"fadeOut"}}}}},(function(){var t=this,e=t.$createElement,n=t._self._c||e;return n("transition",{attrs:{"enter-active-class":t.transition.enter,"leave-active-class":t.transition.leave}},[n("div",{directives:[{name:"show",rawName:"v-show",value:t.isActive,expression:"isActive"}],staticClass:"toast",class:["toast-"+t.type,"is-"+t.position],attrs:{role:"alert"},on:{click:t.whenClicked}},[n("div",{staticClass:"toast-icon"}),t._v(" "),n("p",{staticClass:"toast-text"},[t._v(t._s(t.message))])])])}),[],!1,null,null,null).exports,u=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};return{open:function(n){var o;"string"==typeof n&&(o=n);var i={message:o},s=Object.assign({},i,e,n);return new(t.extend(a))({el:document.createElement("div"),propsData:s})},clear:function(){r.$emit("toast.clear")},success:function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};return this.open(Object.assign({},{message:t,type:"success"},e))},error:function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};return this.open(Object.assign({},{message:t,type:"error"},e))},info:function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};return this.open(Object.assign({},{message:t,type:"info"},e))},warning:function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};return this.open(Object.assign({},{message:t,type:"warning"},e))},default:function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};return this.open(Object.assign({},{message:t,type:"default"},e))}}};a.install=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},n=u(t,e);t.$toast=n,t.prototype.$toast=n};e.default=a}]).default}));
-
-/***/ }),
-
-/***/ "./node_modules/vue-toast-notification/dist/theme-sugar.css":
-/*!******************************************************************!*\
-  !*** ./node_modules/vue-toast-notification/dist/theme-sugar.css ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./theme-sugar.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-toast-notification/dist/theme-sugar.css");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
 
 /***/ }),
 
@@ -53909,46 +53535,30 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-toast-notification/dist/theme-sugar.css */ "./node_modules/vue-toast-notification/dist/theme-sugar.css");
-/* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_toast_notification__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-toast-notification */ "./node_modules/vue-toast-notification/dist/index.min.js");
-/* harmony import */ var vue_toast_notification__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_toast_notification__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var v_mask__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! v-mask */ "./node_modules/v-mask/dist/v-mask.esm.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var v_money__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! v-money */ "./node_modules/v-money/dist/v-money.js");
-/* harmony import */ var v_money__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(v_money__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var vue_audio_recorder__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-audio-recorder */ "./node_modules/vue-audio-recorder/dist/vue-audio-recorder.min.js");
-/* harmony import */ var vue_audio_recorder__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_audio_recorder__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _components_home_HomeComponent_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/home/HomeComponent.vue */ "./resources/js/components/home/HomeComponent.vue");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_audio_recorder__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-audio-recorder */ "./node_modules/vue-audio-recorder/dist/vue-audio-recorder.min.js");
+/* harmony import */ var vue_audio_recorder__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_audio_recorder__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_home_HomeComponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/home/HomeComponent.vue */ "./resources/js/components/home/HomeComponent.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
 
-
-
-
-
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-window.Vue.use(vue_toast_notification__WEBPACK_IMPORTED_MODULE_1___default.a);
-window.Vue.use(v_mask__WEBPACK_IMPORTED_MODULE_2__["default"]);
-window.Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]);
-window.Vue.use(vue_audio_recorder__WEBPACK_IMPORTED_MODULE_5___default.a);
-window.Vue.use(v_money__WEBPACK_IMPORTED_MODULE_4___default.a, {
-  precision: 4
-});
-window.Vue.prototype.$http = axios__WEBPACK_IMPORTED_MODULE_6___default.a;
+window.Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]);
+window.Vue.use(vue_audio_recorder__WEBPACK_IMPORTED_MODULE_1___default.a);
+window.Vue.prototype.$http = axios__WEBPACK_IMPORTED_MODULE_2___default.a;
 
 var routes = [{
   path: '/',
-  component: _components_home_HomeComponent_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+  component: _components_home_HomeComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
   path: '/home',
-  component: _components_home_HomeComponent_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+  component: _components_home_HomeComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
 }];
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   mode: 'history',
   routes: routes
 });

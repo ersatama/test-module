@@ -9,6 +9,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/home','HomeController@home');
     Route::get('/all','HomeController@all');
     Route::post('/audio/save/{item}/{id}','HomeController@saveAudio');
+    Route::post('/audio/save/{item}/{id}/{comment}','HomeController@saveAudioComment');
     Route::post('/module/comment','HomeController@newComment');
 });
 

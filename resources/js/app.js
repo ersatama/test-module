@@ -1,19 +1,12 @@
 require('./bootstrap');
 
-import 'vue-toast-notification/dist/theme-sugar.css';
-import VueToast from 'vue-toast-notification';
-import VueMask from 'v-mask';
 import VueRouter from 'vue-router';
-import Money from 'v-money';
 import AudioRecorder from 'vue-audio-recorder';
 import http from 'axios';
 
 window.Vue = require('vue');
-window.Vue.use(VueToast);
-window.Vue.use(VueMask);
 window.Vue.use(VueRouter);
 window.Vue.use(AudioRecorder);
-window.Vue.use(Money, {precision: 4});
 window.Vue.prototype.$http = http;
 
 import home from './components/home/HomeComponent.vue';
